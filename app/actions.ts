@@ -14,6 +14,7 @@ export async function uploadFile(formData: FormData) {
     path,
     avatar,
   );
+  // @ts-ignore
   if (error?.statusCode === "409") {
     // Handle conflict
     await supabase.storage.from("avatars").update(path, avatar);
