@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandEmpty,
@@ -21,16 +20,21 @@ import {
 import { useDebounce } from 'react-use'
 import { createClient } from '@/utils/supabase/client'
 import { type Tables } from '@/types/supabase'
+import { useRouter, useSearchParams } from 'next/navigation'
 // import { CommandLoading } from 'cmdk'
 
 export default function ProfilesCombobox(props: {
+  autoFocus?: boolean
+  defaultValue?: string
   name: string
   onChange?: (value: string) => void
   profiles: Tables<'profiles'>[] | null
   value?: string
 }) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(props.defaultValue ?? '')
   const [search, setSearch] = useState('')
   const [profiles, setProfiles] = useState<Tables<'profiles'>[]>(
     props.profiles ?? [],
@@ -65,9 +69,10 @@ export default function ProfilesCombobox(props: {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <button
+          autoFocus={props.autoFocus}
           aria-expanded={open}
           className={cn(
-            'bg-orange-50 flex h-12 items-center justify-between rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-orange-950',
+            'bg-orange-100 flex h-12 items-center justify-between rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-orange-950',
             selectedProfile ? 'pl-2 pr-4' : 'px-4',
           )}
           name={props.name}
@@ -90,7 +95,7 @@ export default function ProfilesCombobox(props: {
                   width={32}
                 />
               ) : (
-                <div className="bg-orange-200 flex items-center justify-center rounded-full size-8">
+                <div className="bg-orange-300 flex items-center justify-center rounded-full size-8">
                   {selectedProfile?.full_name?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -125,11 +130,17 @@ export default function ProfilesCombobox(props: {
                     key={profile.id}
                     keywords={keywords}
                     onSelect={currentValue => {
-                      ;(props.onChange ?? setValue)(
+                      const newValue =
                         currentValue === (props.value ?? value)
                           ? ''
-                          : currentValue,
+                          : currentValue
+                      ;(props.onChange ?? setValue)(newValue)
+                      const newSearchParams = new URLSearchParams(
+                        searchParams.toString(),
                       )
+                      if (newValue === '') newSearchParams.delete(props.name)
+                      else newSearchParams.set(props.name, newValue)
+                      router.replace(`?${newSearchParams.toString()}`)
                       setOpen(false)
                     }}
                     value={profile.id}
@@ -155,7 +166,7 @@ export default function ProfilesCombobox(props: {
                           width={32}
                         />
                       ) : (
-                        <div className="bg-orange-200 flex items-center justify-center rounded-full size-8">
+                        <div className="bg-orange-300 flex items-center justify-center rounded-full size-8">
                           {profile.full_name?.charAt(0).toUpperCase()}
                         </div>
                       )}

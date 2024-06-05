@@ -2,11 +2,11 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { PropsWithChildren } from 'react'
-import NavLink from './NavLink'
+import Nav from './Nav'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
+  : 'http://localhost:3001'
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -21,18 +21,12 @@ export default function RootLayout(props: PropsWithChildren) {
     <html
       lang="en"
       className={cn(
-        'bg-orange-200 duration-500 font-serif transition-colors',
+        'bg-orange-200 duration-500 font-serif text-orange-950 transition-colors',
         inter.className,
       )}
     >
-      <body className="flex flex-col min-h-screen">
-        <nav className="flex p-1.5">
-          <NavLink className="font-bold" href="/">
-            Candid
-          </NavLink>
-          <NavLink href="/profile">My Profile</NavLink>
-          <NavLink href="/feedback">Give Feedback</NavLink>
-        </nav>
+      <body className="flex flex-col items-center min-h-screen">
+        <Nav />
         {props.children}
       </body>
     </html>

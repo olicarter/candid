@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { type ComponentPropsWithoutRef, useEffect, useRef } from 'react'
 import { useIntersection } from 'react-use'
 
@@ -7,7 +8,11 @@ interface SectionProps extends ComponentPropsWithoutRef<'section'> {
   intersectColor: string
 }
 
-export default function Section({ intersectColor, ...props }: SectionProps) {
+export default function Section({
+  className,
+  intersectColor,
+  ...props
+}: SectionProps) {
   const ref = useRef(null)
 
   const intersection = useIntersection(ref, {
@@ -18,8 +23,6 @@ export default function Section({ intersectColor, ...props }: SectionProps) {
 
   const isIntersecting = intersection?.isIntersecting
 
-  console.log(intersection)
-
   useEffect(() => {
     if (isIntersecting) document.documentElement.classList.add(intersectColor)
     else document.documentElement.classList.remove(intersectColor)
@@ -27,7 +30,10 @@ export default function Section({ intersectColor, ...props }: SectionProps) {
 
   return (
     <section
-      className="flex items-center justify-evenly min-h-screen w-full"
+      className={cn(
+        'flex items-center justify-evenly min-h-screen w-full',
+        className,
+      )}
       ref={ref}
       {...props}
     />

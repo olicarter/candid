@@ -13,7 +13,7 @@ export default function NavLink({ className, href, ...props }: NavLinkProps) {
   return (
     <Link
       className={cn(
-        'hover:underline leading-none left-0 p-3 top-0',
+        'hover:underline leading-none p-3',
         className,
         pathname === href && 'underline',
       )}

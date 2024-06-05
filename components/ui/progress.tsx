@@ -23,10 +23,14 @@ const Progress = React.forwardRef<
     />
     <ProgressPrimitive.Indicator
       className={cn(
-        'absolute top-0 left-0 h-full w-full flex-1 transition-all dark:bg-orange-100',
-        previousValue < value! ? 'bg-emerald-500' : 'bg-red-500',
+        'absolute top-0 left-0 h-full w-full flex-1 transition-all',
+        // previousValue < value! ? 'bg-emerald-500' : 'bg-red-500',
       )}
       style={{
+        background:
+          previousValue < value!
+            ? `repeating-linear-gradient(315deg, #10b981 0px, #10b981 4px, transparent 4px, transparent 8px)`
+            : `repeating-linear-gradient(315deg, #ef4444 0px, #ef4444 4px, transparent 4px, transparent 8px)`,
         left: `${previousValue < value! ? previousValue : value}%`,
         width: `${
           previousValue < value!
@@ -34,6 +38,10 @@ const Progress = React.forwardRef<
             : previousValue - value!
         }%`,
       }}
+    />
+    <ProgressPrimitive.Indicator
+      className="absolute bg-black h-full w-1 z-20 top-0"
+      style={{ left: `${value}%` }}
     />
   </ProgressPrimitive.Root>
 ))

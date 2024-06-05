@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply text-orange-950;
+html {
+  scrollbar-width: none;
 }
