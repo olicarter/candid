@@ -34,67 +34,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      companies: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-        }
-        Relationships: []
-      }
-      companies_members: {
-        Row: {
-          company: string
-          created_at: string
-          created_by: string
-          profile: string
-        }
-        Insert: {
-          company: string
-          created_at?: string
-          created_by?: string
-          profile: string
-        }
-        Update: {
-          company?: string
-          created_at?: string
-          created_by?: string
-          profile?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "companies_members_company_fkey"
-            columns: ["company"]
-            isOneToOne: false
-            referencedRelation: "companies"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "companies_members_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "companies_members_member_fkey"
-            columns: ["profile"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       feedback: {
         Row: {
           content: string
@@ -134,10 +73,86 @@ export type Database = {
           },
         ]
       }
+      organizations: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          name: string
+          stripe_customer_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name: string
+          stripe_customer_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name?: string
+          stripe_customer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organizations_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organizations_members: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          organization: string
+          profile: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          organization: string
+          profile: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          organization?: string
+          profile?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organizations_members_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organizations_members_organization_fkey"
+            columns: ["organization"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organizations_members_profile_fkey"
+            columns: ["profile"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           created_at: string
+          email: string
           full_name: string | null
           id: string
           updated_at: string | null
@@ -145,6 +160,7 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           created_at?: string
+          email: string
           full_name?: string | null
           id: string
           updated_at?: string | null
@@ -152,6 +168,7 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           created_at?: string
+          email?: string
           full_name?: string | null
           id?: string
           updated_at?: string | null
@@ -166,41 +183,91 @@ export type Database = {
           },
         ]
       }
-      teams: {
+      profiles_roles: {
         Row: {
-          company: string
           created_at: string
-          created_by: string
           id: string
-          name: string
+          profile: string
+          role: Database["public"]["Enums"]["role"]
         }
         Insert: {
-          company: string
           created_at?: string
-          created_by?: string
           id?: string
-          name: string
+          profile: string
+          role: Database["public"]["Enums"]["role"]
         }
         Update: {
-          company?: string
           created_at?: string
-          created_by?: string
           id?: string
-          name?: string
+          profile?: string
+          role?: Database["public"]["Enums"]["role"]
         }
         Relationships: [
           {
-            foreignKeyName: "teams_company_fkey"
-            columns: ["company"]
+            foreignKeyName: "profiles_roles_profile_fkey"
+            columns: ["profile"]
             isOneToOne: false
-            referencedRelation: "companies"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      roles_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          permission: Database["public"]["Enums"]["permission"]
+          role: Database["public"]["Enums"]["role"]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          permission: Database["public"]["Enums"]["permission"]
+          role: Database["public"]["Enums"]["role"]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["permission"]
+          role?: Database["public"]["Enums"]["role"]
+        }
+        Relationships: []
+      }
+      teams: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          name: string
+          organization: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name: string
+          organization: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name?: string
+          organization?: string
+        }
+        Relationships: [
           {
             foreignKeyName: "teams_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teams_organization_fkey"
+            columns: ["organization"]
+            isOneToOne: false
+            referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
         ]
@@ -243,10 +310,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      authorize: {
+        Args: {
+          requested_permission: Database["public"]["Enums"]["permission"]
+        }
+        Returns: boolean
+      }
+      custom_access_token_hook: {
+        Args: {
+          event: Json
+        }
+        Returns: Json
+      }
     }
     Enums: {
-      [_ in never]: never
+      permission: "organizations_members:insert"
+      role: "admin" | "participant"
     }
     CompositeTypes: {
       [_ in never]: never

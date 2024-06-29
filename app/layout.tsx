@@ -1,8 +1,7 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { ReactNode } from 'react'
+import { inter } from '@/utils/fonts'
 import { cn } from '@/lib/utils'
-import { PropsWithChildren } from 'react'
-import Nav from './Nav'
+import '@/app/globals.css'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -14,9 +13,7 @@ export const metadata = {
   description: 'Feedback for humans',
 }
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function RootLayout(props: PropsWithChildren) {
+export default async function RootLayout(props: { children: ReactNode }) {
   return (
     <html
       lang="en"
@@ -26,7 +23,6 @@ export default function RootLayout(props: PropsWithChildren) {
       )}
     >
       <body className="flex flex-col items-center min-h-screen">
-        <Nav />
         {props.children}
       </body>
     </html>

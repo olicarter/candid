@@ -1,10 +1,11 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Tables } from '@/types/supabase'
 import { uploadFile } from './actions'
 import { createClient } from '@/utils/supabase/client'
+import Avatar from '@/components/Avatar'
 
 export default function AvatarInput(props: { profile: Tables<'profiles'> }) {
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -12,14 +13,19 @@ export default function AvatarInput(props: { profile: Tables<'profiles'> }) {
 
   const [avatar, setAvatar] = useState<File | null>(null)
 
-  const supabase = createClient()
-
-  const src = avatar
-    ? URL.createObjectURL(avatar)
-    : props.profile.avatar_url
-    ? supabase.storage.from('avatars').getPublicUrl(props.profile.avatar_url)
-        .data.publicUrl
-    : ''
+  const src = useMemo(() => {
+    if (avatar) return URL.createObjectURL(avatar)
+    if (props.profile.avatar_url) {
+      if (props.profile.avatar_url.startsWith('http')) {
+        return props.profile.avatar_url
+      }
+      const supabase = createClient()
+      return supabase.storage
+        .from('avatars')
+        .getPublicUrl(props.profile.avatar_url).data.publicUrl
+    }
+    return ''
+  }, [avatar, props.profile.avatar_url])
 
   return (
     <form
@@ -42,13 +48,11 @@ export default function AvatarInput(props: { profile: Tables<'profiles'> }) {
         ref={inputRef}
         type="file"
       />
-      <Image
-        alt="Profile picture"
-        className="absolute bg-orange-50 cursor-pointer inset-0 rounded-full size-full peer-focus-visible:ring-2 peer-focus-visible:ring-orange-950 peer-focus-visible:ring-offset-2"
-        height={192}
+      <Avatar
+        className="cursor-pointer peer-focus-visible:ring-2 peer-focus-visible:ring-orange-950"
         onClick={() => inputRef.current?.click()}
+        size={192}
         src={src}
-        width={192}
       />
     </form>
   )

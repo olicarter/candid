@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import Image from 'next/image'
+import Avatar from '@/components/Avatar'
 
 const data = [
   {
@@ -54,56 +55,15 @@ export default async function ProfilePage() {
     throw new Error('Profile creation failed. Please contact support.')
   }
 
-  if (profile.updated_at === null) {
-    const updateProfile = async (formData: FormData) => {
-      'use server'
-      const supabase = createClient()
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      if (!user) redirect('/login')
-      await supabase
-        .from('profiles')
-        .update({
-          full_name: formData.get('full_name') as string,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', user.id)
-      revalidatePath('/')
-    }
-
-    return (
-      <div className="flex grow items-center justify-evenly">
-        <div className="flex flex-col gap-4 items-center max-w-xs w-full">
-          <AvatarInput profile={profile} />
-          <form action={updateProfile} className="flex flex-col gap-[inherit]">
-            <Input defaultValue={profile.full_name ?? ''} name="full_name" />
-            <Button>Continue</Button>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
-  const avatarPublicUrl = supabase.storage
-    .from('avatars')
-    .getPublicUrl(profile.avatar_url!).data.publicUrl
-
   return (
     <div className="flex flex-col gap-x-8 gap-y-24 max-w-screen-md px-8 py-24 w-full">
       <section className="flex flex-col gap-4 items-center">
-        <Image
-          alt="Avatar"
-          className="rounded-full"
-          height={128}
-          src={avatarPublicUrl}
-          width={128}
-        />
+        <Avatar profile={profile} size={128} />
         <h5 className="font-bold text-3xl">{profile.full_name}</h5>
       </section>
       <section>
         <header>
-          <h5 className="font-bold text-2xl">Summary</h5>
+          <h5 className="font-bold text-xl">Summary</h5>
           <p className="opacity-80">
             Your recently received feedback shows better collaboration and
             communication within the team, which is great. However, there's been
@@ -116,7 +76,7 @@ export default async function ProfilePage() {
       </section>
       <section className="flex flex-col gap-x-8 gap-y-4">
         <header>
-          <h5 className="font-bold text-2xl">Values</h5>
+          <h5 className="font-bold text-xl">Values</h5>
           <p className="opacity-80">
             This is how closely you align with the company's values, based on
             analysis of the feedback you've received over the past 6 months.
@@ -157,7 +117,7 @@ export default async function ProfilePage() {
       </section>
       <section className="flex flex-col gap-x-8 gap-y-4">
         <header>
-          <h5 className="font-bold text-2xl">Sentiment</h5>
+          <h5 className="font-bold text-xl">Sentiment</h5>
           <p className="opacity-80">
             This is an average of how positive or negative the feedback you've
             sent and received has been. There's no right or wrong here, but it's

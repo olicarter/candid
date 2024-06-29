@@ -5,6 +5,13 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import Avatar from '@/components/Avatar'
+import {
+  FormField,
+  FormHeader,
+  FormLabel,
+  FormDescription,
+} from '@/components/form'
 
 export default async function FeedbackCreatePage(props: {
   searchParams: Record<string, string>
@@ -15,7 +22,7 @@ export default async function FeedbackCreatePage(props: {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) redirect('/login')
+  if (!user) redirect('/')
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -37,16 +44,10 @@ export default async function FeedbackCreatePage(props: {
     <div className="flex flex-col gap-y-24 py-24 grow items-center max-w-screen-md w-full">
       <section className="col-span-full flex flex-col gap-4 items-center">
         <div className="relative size-32">
-          <Image
-            alt="Avatar"
+          <Avatar
             className="absolute top-0 left-0 -translate-x-1/4 rounded-full"
-            height={128}
-            src={
-              supabase.storage
-                .from('avatars')
-                .getPublicUrl(profile?.avatar_url!).data.publicUrl
-            }
-            width={128}
+            profile={profile}
+            size={128}
           />
           {recipient?.avatar_url ? (
             <Image
@@ -74,42 +75,36 @@ export default async function FeedbackCreatePage(props: {
         <h5 className="font-bold text-3xl">Give Feedback</h5>
       </section>
       <form action={submitFeedback} className="flex flex-col gap-8 px-8">
-        <div className="col-span-full flex flex-col gap-x-8 gap-y-4">
-          <header>
-            <label
-              className="col-span-full font-semibold text-2xl"
-              htmlFor="feedback"
-            >
+        <FormField>
+          <FormHeader>
+            <FormLabel className="col-span-full" htmlFor="feedback">
               Recipient
-            </label>
-            <p className="opacity-80">
+            </FormLabel>
+            <FormDescription>
               Select the person you want to give feedback to. If there are
               several, submit a feedback for each.
-            </p>
-          </header>
+            </FormDescription>
+          </FormHeader>
           <ProfilesCombobox
             autoFocus
             defaultValue={recipient?.id}
             name="recipient"
             profiles={profiles}
           />
-        </div>
-        <div className="col-span-full flex flex-col gap-x-8 gap-y-4">
-          <header>
-            <label
-              className="col-span-full font-semibold text-2xl"
-              htmlFor="feedback"
-            >
+        </FormField>
+        <FormField>
+          <FormHeader>
+            <FormLabel className="col-span-full" htmlFor="feedback">
               Feedback
-            </label>
-            <p className="opacity-80">
+            </FormLabel>
+            <FormDescription>
               Write your thoughts and feelings as they are. We default to
               anonymising what you write, though you can choose below to send it
               unaltered if you wish.
-            </p>
-          </header>
+            </FormDescription>
+          </FormHeader>
           <Textarea id="feedback" name="feedback" required rows={6} />
-        </div>
+        </FormField>
         <Button>Submit Feedback</Button>
       </form>
     </div>
