@@ -1,12 +1,12 @@
-import { createTeam } from '@/app/actions'
+import { createTeam } from '@/actions/createTeam'
 import { FormField, FormLabel } from '@/components/form'
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+} from '@/components/dialog'
+import { Input } from '@/components/input'
 import { createClient } from '@/utils/supabase/server'
 import { SubmitButton } from '@/components/submit-button'
 

@@ -1,0 +1,23 @@
+.form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: min-content 1fr;
+}
+
+.label {
+  font-family: var(--font-rowdies);
+  font-weight: 300;
+  line-height: 2.5rem;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  gap: inherit;
+  grid-column-start: 2;
+  margin-top: 8px;
+}
+
+.footer button[type='submit'] {
+  flex-grow: 1;
+}

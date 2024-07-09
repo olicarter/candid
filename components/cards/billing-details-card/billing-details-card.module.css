@@ -1,0 +1,33 @@
+.paymentMethod {
+  align-items: center;
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-grow: 1;
+  font-family: monospace;
+  gap: 0.75rem;
+  height: 2.5rem;
+  overflow: hidden;
+  padding: 0 0.5rem;
+}
+
+.paymentMethod .card {
+  align-items: center;
+  aspect-ratio: 1.585 / 1;
+  background-color: white;
+  border-radius: 0.25rem;
+  color: black;
+  display: flex;
+  height: 1.5rem;
+  justify-content: center;
+}
+
+.paymentMethod .card .icon {
+  height: 1.25rem;
+}
+
+.paymentMethod span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

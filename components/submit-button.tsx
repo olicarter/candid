@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormStatus } from 'react-dom'
-import { Button, type ButtonProps } from '@/components/ui/button'
+import { Button, type ButtonProps } from '@/components/button'
 import { useEffect } from 'react'
 import { usePrevious } from 'react-use'
 
@@ -15,7 +15,7 @@ export function SubmitButton({
   pendingText,
   ...props
 }: SubmitButtonProps) {
-  const { pending, action } = useFormStatus()
+  const { action, pending } = useFormStatus()
 
   const isPending = pending && action === props.formAction
   const isPendingPrev = !!usePrevious(isPending)
@@ -25,7 +25,7 @@ export function SubmitButton({
   }, [isPending, isPendingPrev])
 
   return (
-    <Button {...props} type="submit" aria-disabled={pending}>
+    <Button {...props} disabled={isPending} type="submit">
       {isPending ? pendingText : children}
     </Button>
   )

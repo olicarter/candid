@@ -1,0 +1,4 @@
+.avatar {
+  border-radius: 50%;
+  outline: 0.25rem solid var(--color-input-background);
+}

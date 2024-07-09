@@ -24,7 +24,7 @@ export default function ElementsContext(props: {
         colorDanger: '#df1b41',
         fontFamily: 'system-ui, sans-serif',
         spacingUnit: '4.5px',
-        borderRadius: '6px',
+        borderRadius: '0.375rem',
         focusBoxShadow: 'none',
         focusOutline: '2px solid #431407',
         ...props.options.appearance?.variables,

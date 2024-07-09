@@ -1,0 +1,29 @@
+.dialog {
+  border-radius: 1rem;
+  left: 50%;
+  max-width: 36rem;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 50;
+}
+
+.overlay {
+  background-color: black;
+  inset: 0;
+  opacity: 0.6;
+  position: fixed;
+  z-index: 50;
+}
+
+.close {
+  border-radius: 0.25rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.close:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}

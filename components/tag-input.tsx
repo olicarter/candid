@@ -59,9 +59,9 @@ export function TagInput({
         'bg-orange-100 cursor-text flex flex-wrap relative ring-orange-950 has-[input:focus]:ring-2',
         rokkitt.className,
         {
-          'gap-1.5 p-1.5 rounded-[8px]': size === 'sm',
+          'gap-1.5 p-1.5 rounded-[0.5rem]': size === 'sm',
           'gap-2 p-2 rounded-[10px]': size === 'md',
-          ' gap-3 p-3 rounded-[12px]': size === 'lg',
+          ' gap-3 p-3 rounded-[0.75rem]': size === 'lg',
         },
       )}
       onClick={() => inputRef.current?.focus()}

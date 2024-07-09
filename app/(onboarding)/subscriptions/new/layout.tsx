@@ -9,7 +9,7 @@ export default async function SubscriptionLayout(props: {
   if (!user) redirect('/')
 
   const organization = await getOrganization()
-  if (!organization) redirect('/organizations/new')
+  if (!organization) redirect('/onboarding')
 
   return <>{props.children}</>
 }

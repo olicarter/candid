@@ -1,0 +1,5 @@
+.nav {
+  align-self: center;
+  max-width: 40rem;
+  width: calc(100% - 4rem);
+}

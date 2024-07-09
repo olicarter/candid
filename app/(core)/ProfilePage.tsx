@@ -3,7 +3,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import AvatarInput from '@/app/AvatarInput'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { Input } from '@/components/input'
 import { Progress } from '@/components/ui/progress'
 import Image from 'next/image'
 import Avatar from '@/components/Avatar'
@@ -55,6 +55,12 @@ export default async function ProfilePage() {
     throw new Error('Profile creation failed. Please contact support.')
   }
 
+  const currentDate = new Date()
+  currentDate.setMonth(currentDate.getMonth() - 1)
+  const previousMonthName = currentDate.toLocaleString('default', {
+    month: 'long',
+  })
+
   return (
     <div className="flex flex-col gap-x-8 gap-y-24 max-w-screen-md px-8 py-24 w-full">
       <section className="flex flex-col gap-4 items-center">
@@ -63,7 +69,7 @@ export default async function ProfilePage() {
       </section>
       <section>
         <header>
-          <h5 className="font-bold text-xl">Summary</h5>
+          <h5 className="font-bold text-xl">{previousMonthName} Summary</h5>
           <p className="opacity-80">
             Your recently received feedback shows better collaboration and
             communication within the team, which is great. However, there's been

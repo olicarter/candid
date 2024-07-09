@@ -16,6 +16,26 @@ export async function getUser() {
   return user;
 }
 
+export async function getProfile() {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return null;
+
+  const { data: profile, error: getProfileError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
+  if (getProfileError) throw getProfileError;
+
+  return profile;
+}
+
 export async function getUserRole() {
   const supabase = createClient();
 
@@ -33,13 +53,9 @@ export async function getOrganization() {
 
   const {
     data: { user },
-    error: getUserError,
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    console.error("getUser error");
-    throw getUserError;
-  }
+  if (!user) return null;
 
   const { data: organizations, error: getOrganizationsError } = await supabase
     .from("organizations")
@@ -62,13 +78,9 @@ export async function getOrganizationMembers() {
 
   const {
     data: { user },
-    error: getUserError,
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    console.error("getUser error");
-    throw getUserError;
-  }
+  if (!user) return null;
 
   const { data: profile, error: getProfileError } = await supabase
     .from("profiles")

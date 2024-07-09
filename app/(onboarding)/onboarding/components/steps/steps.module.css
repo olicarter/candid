@@ -1,0 +1,92 @@
+.main {
+  align-items: flex-start;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 40rem;
+  width: calc(100% - 4rem);
+}
+
+.stepIndicators {
+  align-self: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(9, 1fr);
+  height: 1rem;
+  max-width: 40rem;
+  transition-duration: 500ms;
+  transition-property: transform;
+  width: calc(100% - 4rem);
+}
+
+.stepIndicators input {
+  appearance: none;
+  background-color: var(--color-card-background);
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.stepIndicators input:checked {
+  background-color: var(--color-accent-background);
+  transition-duration: 500ms;
+  transition-property: background-color;
+}
+
+.cards {
+  align-items: start;
+  display: grid;
+  gap: 2rem;
+  transition-duration: 500ms;
+  transition-property: transform;
+}
+
+.cards > * {
+  transition-duration: 500ms;
+  transition-property: opacity;
+}
+
+.cards[data-step='0'] > :not(:nth-child(1)) {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.cards[data-step='0'] > :not(:nth-child(1)) footer {
+  display: none;
+}
+
+.cards[data-step='1'] > :not(:nth-child(2)) {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.cards[data-step='1'] > :not(:nth-child(2)) footer {
+  display: none;
+}
+
+.cards[data-step='2'] > :not(:nth-child(3)) {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.cards[data-step='2'] > :not(:nth-child(3)) footer {
+  display: none;
+}
+
+.cards[data-step='3'] > :not(:nth-child(4)) {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.cards[data-step='3'] > :not(:nth-child(4)) footer {
+  display: none;
+}
+
+.cards[data-step='4'] > :not(:nth-child(5)) {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.cards[data-step='4'] > :not(:nth-child(5)) footer {
+  display: none;
+}

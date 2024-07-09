@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config = {
   darkMode: ["class"],
@@ -18,6 +19,12 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        orange: {
+          50: "#FFFAF5", // make default orange.50 lighter
+        },
+        primary: colors.orange,
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

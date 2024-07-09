@@ -1,0 +1,9 @@
+.textarea {
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.textarea:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}

@@ -1,13 +1,13 @@
-import { inviteUserByEmail } from '@/app/actions'
+import { inviteUserByEmail } from '@/actions/inviteUserByEmail'
 import { FormField, FormLabel } from '@/components/form'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/button'
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+} from '@/components/dialog'
+import { Input } from '@/components/input'
 import {
   Select,
   SelectContent,

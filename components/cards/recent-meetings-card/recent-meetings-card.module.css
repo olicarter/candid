@@ -1,0 +1,56 @@
+.meetingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recentMeeting {
+  align-items: center;
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  height: 4rem;
+  padding: 0.75rem 14px;
+  place-content: center;
+  text-align: left;
+}
+
+.recentMeeting:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}
+
+.recentMeeting > :first-child {
+  flex-grow: 1;
+}
+
+.name {
+  font-weight: bold;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  margin-top: 0.375rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendeeList {
+  display: flex;
+}
+
+.attendeeList > * {
+  margin-left: -0.75rem;
+}
+
+.avatar {
+  height: 2.5rem;
+  outline-width: 3px;
+  width: 2.5rem;
+}

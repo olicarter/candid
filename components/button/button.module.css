@@ -1,0 +1,44 @@
+.button {
+  align-items: center;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-shrink: 0;
+  font-weight: 600;
+  height: 2.5rem;
+  justify-content: center;
+  padding: 0 14px;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}
+
+.button.primary {
+  background-color: var(--color-accent-background);
+  color: var(--color-accent-foreground);
+}
+
+.button.light {
+  background-color: var(--color-input-background);
+}
+
+.button.red {
+  background-color: theme('colors.red.300');
+  color: theme('colors.red.950');
+}
+
+.button.amber {
+  background-color: theme('colors.amber.300');
+  color: theme('colors.amber.950');
+}
+
+.button.green {
+  background-color: theme('colors.emerald.300');
+  color: theme('colors.emerald.950');
+}

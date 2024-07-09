@@ -155,6 +155,9 @@ export type Database = {
           email: string
           full_name: string | null
           id: string
+          job_title: string | null
+          onboarding_step: number | null
+          theme: Database["public"]["Enums"]["theme"]
           updated_at: string | null
         }
         Insert: {
@@ -163,6 +166,9 @@ export type Database = {
           email: string
           full_name?: string | null
           id: string
+          job_title?: string | null
+          onboarding_step?: number | null
+          theme?: Database["public"]["Enums"]["theme"]
           updated_at?: string | null
         }
         Update: {
@@ -171,6 +177,9 @@ export type Database = {
           email?: string
           full_name?: string | null
           id?: string
+          job_title?: string | null
+          onboarding_step?: number | null
+          theme?: Database["public"]["Enums"]["theme"]
           updated_at?: string | null
         }
         Relationships: [
@@ -324,8 +333,9 @@ export type Database = {
       }
     }
     Enums: {
-      permission: "organizations_members:insert"
+      permission: "organizations_members.insert"
       role: "admin" | "participant"
+      theme: "orange" | "emerald"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -607,6 +617,10 @@ export type Database = {
           metadata: Json
           updated_at: string
         }[]
+      }
+      operation: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       search: {
         Args: {

@@ -37,8 +37,8 @@ const Progress = forwardRef<
       style={{
         background:
           previousValue < value!
-            ? `repeating-linear-gradient(315deg, #10b981 0px, #10b981 4px, transparent 4px, transparent 8px)`
-            : `repeating-linear-gradient(315deg, #ef4444 0px, #ef4444 4px, transparent 4px, transparent 8px)`,
+            ? `repeating-linear-gradient(315deg, #10b981 0px, #10b981 0.25rem, transparent 0.25rem, transparent 0.5rem)`
+            : `repeating-linear-gradient(315deg, #ef4444 0px, #ef4444 0.25rem, transparent 0.25rem, transparent 0.5rem)`,
         left: `${previousValue < value! ? previousValue : value}%`,
         width: `${
           previousValue < value!

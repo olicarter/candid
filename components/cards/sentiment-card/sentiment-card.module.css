@@ -1,0 +1,23 @@
+.label {
+  line-height: 1;
+}
+
+.bar {
+  border-radius: 0.5rem;
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar > * {
+  height: inherit;
+}
+
+.bar > :first-child {
+  background-color: var(--color-danger-background);
+}
+
+.bar > :last-child {
+  background-color: var(--color-success-background);
+}

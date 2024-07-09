@@ -1,0 +1,11 @@
+.select {
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  text-overflow: ellipsis;
+}
+
+.select:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}

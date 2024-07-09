@@ -1,0 +1,38 @@
+.userIdentities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.userIdentity {
+  display: flex;
+  gap: inherit;
+}
+
+.userIdentity label {
+  align-items: center;
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-grow: 1;
+  gap: 0.75rem;
+  height: 2.5rem;
+  overflow: hidden;
+  padding: 0 0.75rem;
+}
+
+.userIdentity label:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}
+
+.userIdentity label .icon {
+  flex-shrink: 0;
+  height: 1rem;
+  width: 1rem;
+}
+
+.userIdentity label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root[data-theme='emerald'] {
+  --color-background: hsl(166, 91%, 9%);
+  --color-foreground: hsl(151.8, 81%, 95.9%);
+  --color-accent-background: hsl(30.7, 97.2%, 65%);
+  --color-accent-foreground: hsl(30.7, 97.2%, 10%);
+  --color-danger-background: hsl(349.7, 89.2%, 60.2%);
+  --color-danger-foreground: hsl(355.7, 100%, 97.3%);
+  --color-success-background: hsl(142.1, 70.6%, 45.3%);
+  --color-card-background: hsl(164, 86%, 16%);
+  --color-input-background: hsl(162.9, 93.5%, 24.3%);
+}
+
+:root[data-theme='orange'] {
+  --color-background: hsl(33.3, 100%, 96.5%);
+  --color-foreground: hsl(13, 81.1%, 14.5%);
+  --color-accent-background: hsl(30.7, 97.2%, 65%);
+  --color-accent-foreground: hsl(13, 81.1%, 14.5%);
+  --color-danger-background: hsl(0, 90.6%, 70.8%);
+  --color-danger-foreground: hsl(0, 74.7%, 15.5%);
+  --color-success-background: hsl(141.9, 69.2%, 58%);
+  --color-card-background: hsl(34.3, 90%, 90%);
+  --color-input-background: hsl(33.3, 100%, 96.5%);
+}
+
 html {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   scrollbar-width: none;
 }

@@ -1,14 +1,13 @@
-import { updateStripeCustomer } from '@/app/actions'
+import { updateStripeCustomer } from '@/actions/updateStripeCustomer'
 import { FormField, FormLabel } from '@/components/form'
 import { SubmitButton } from '@/components/submit-button'
-import { Button } from '@/components/ui/button'
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+} from '@/components/dialog'
+import { Input } from '@/components/input'
 import { getCustomer } from '@/lib/stripe'
 
 export default async function UpdateBillingDialogContent() {

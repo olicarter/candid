@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
-import { inter } from '@/utils/fonts'
+import { inter, rowdies } from '@/utils/fonts'
 import { cn } from '@/lib/utils'
 import '@/app/globals.css'
+import { getProfile } from '@/lib/auth'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -14,16 +15,18 @@ export const metadata = {
 }
 
 export default async function RootLayout(props: { children: ReactNode }) {
+  const profile = await getProfile()
+
   return (
     <html
       lang="en"
-      className={cn(
-        'bg-orange-200 duration-500 font-serif text-orange-950 transition-colors',
-        inter.className,
-      )}
+      className={cn(inter.className, rowdies.variable)}
+      data-theme={profile?.theme ?? 'emerald'}
     >
-      <body className="flex flex-col items-center min-h-screen">
-        {props.children}
+      <body className="flex flex-col items-center">
+        <div className="flex flex-col min-h-screen py-8 gap-8 w-full">
+          {props.children}
+        </div>
       </body>
     </html>
   )

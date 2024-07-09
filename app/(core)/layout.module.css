@@ -1,0 +1,59 @@
+.navWrapper {
+  background-color: var(--color-card-background);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  align-items: center;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem;
+}
+
+.hero > :last-child {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: max-content 1fr max-content;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.hero > :last-child > :first-child {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.hero > :last-child > :nth-child(2) {
+  background-color: var(--color-foreground);
+  border-radius: 1.5rem 1.5rem 1.5rem 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.hero > :last-child > :nth-child(3) {
+  background-color: var(--color-foreground);
+  border-radius: 1.5rem 1.5rem 0 1.5rem;
+  grid-column: 2;
+  grid-row: 2 / span 2;
+}
+
+.hero > :last-child > :last-child {
+  grid-column: 3;
+  grid-row: 3 / span 2;
+}
+
+.hero h1 {
+  font-family: var(--font-rowdies);
+  font-size: 2.5rem;
+}
+
+.hero p {
+  margin-top: 0.5rem;
+}
+
+.hero .avatar {
+  height: 8rem;
+  width: 8rem;
+}

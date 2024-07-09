@@ -1,0 +1,15 @@
+.input {
+  background-color: var(--color-input-background);
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  text-overflow: ellipsis;
+}
+
+.input:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}
+
+.input::placeholder {
+  color: hsl(from var(--color-foreground) h s l / 0.5);
+}

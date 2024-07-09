@@ -1,0 +1,18 @@
+.link {
+  align-items: center;
+  border-radius: 0.5rem;
+  display: flex;
+  font-family: var(--font-rowdies);
+  font-weight: 300;
+  height: 2.5rem;
+  padding: 0 14px;
+}
+
+.link:focus-visible {
+  outline: solid 2px var(--color-foreground);
+}
+
+.link.active {
+  background-color: var(--color-accent-background);
+  color: var(--color-accent-foreground);
+}
