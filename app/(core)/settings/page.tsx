@@ -61,7 +61,7 @@ export default async function TeamPage() {
           userIdentities={getUserIdentitiesData?.identities}
         />
         <OrganizationDetailsCard organization={organization} />
-        <BillingDetailsCard card={stripePaymentMethod.card ?? null} />
+        <BillingDetailsCard card={stripePaymentMethod?.card ?? null} />
         <AccountActionsCard />
       </div>
       <div>
