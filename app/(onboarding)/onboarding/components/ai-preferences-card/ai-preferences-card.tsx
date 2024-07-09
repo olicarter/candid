@@ -48,3 +48,5 @@ export const AIPreferencesCard = forwardRef<
     </Card.Content>
   </Card.Root>
 ))
+
+AIPreferencesCard.displayName = 'AIPreferencesCard'

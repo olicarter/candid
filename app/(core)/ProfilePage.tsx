@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import AvatarInput from '@/app/AvatarInput'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/button'
 import { Input } from '@/components/input'
 import { Progress } from '@/components/ui/progress'
 import Image from 'next/image'
@@ -72,11 +72,11 @@ export default async function ProfilePage() {
           <h5 className="font-bold text-xl">{previousMonthName} Summary</h5>
           <p className="opacity-80">
             Your recently received feedback shows better collaboration and
-            communication within the team, which is great. However, there's been
-            a dip in tackling problems and coming up with creative solutions.
-            Flexibility has improved slightly. Let's focus on boosting
-            problem-solving and creativity while keeping up the good work in
-            other areas.
+            communication within the team, which is great. However, there&apos;s
+            been a dip in tackling problems and coming up with creative
+            solutions. Flexibility has improved slightly. Let&apos;s focus on
+            boosting problem-solving and creativity while keeping up the good
+            work in other areas.
           </p>
         </header>
       </section>
@@ -84,8 +84,9 @@ export default async function ProfilePage() {
         <header>
           <h5 className="font-bold text-xl">Values</h5>
           <p className="opacity-80">
-            This is how closely you align with the company's values, based on
-            analysis of the feedback you've received over the past 6 months.
+            This is how closely you align with the company&apos;s values, based
+            on analysis of the feedback you&apos;ve received over the past 6
+            months.
           </p>
         </header>
         <ul className="flex flex-col gap-4">
@@ -125,9 +126,10 @@ export default async function ProfilePage() {
         <header>
           <h5 className="font-bold text-xl">Sentiment</h5>
           <p className="opacity-80">
-            This is an average of how positive or negative the feedback you've
-            sent and received has been. There's no right or wrong here, but it's
-            generally good to maintain a healthy balance.
+            This is an average of how positive or negative the feedback
+            you&apos;ve sent and received has been. There&apos;s no right or
+            wrong here, but it&apos;s generally good to maintain a healthy
+            balance.
           </p>
         </header>
         <div className="grid grid-cols-2 gap-[inherit]">

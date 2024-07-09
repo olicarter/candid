@@ -110,3 +110,5 @@ export const BillingDetailsCard = forwardRef<
     </Card.Root>
   )
 })
+
+BillingDetailsCard.displayName = 'BillingDetailsCard'

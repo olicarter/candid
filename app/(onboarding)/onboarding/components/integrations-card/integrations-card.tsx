@@ -52,3 +52,5 @@ export const IntegrationsCard = forwardRef<
     </Card.Content>
   </Card.Root>
 ))
+
+IntegrationsCard.displayName = 'IntegrationsCard'

@@ -45,6 +45,8 @@
     "@types/react-dom": "18.2.18",
     "@types/uuid": "^10.0.0",
     "encoding": "^0.1.13",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
     "supabase": ">=1.8.1"
   }
 }

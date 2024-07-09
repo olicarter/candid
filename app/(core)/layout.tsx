@@ -33,7 +33,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
             <Nav />
             <section className={styles.hero}>
               <div>
-                <h1>Team feedback you'll love</h1>
+                <h1>Team feedback you&apos;ll love</h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
                   massa mi. Aliquam in hendrerit urna. Pellentesque sit amet

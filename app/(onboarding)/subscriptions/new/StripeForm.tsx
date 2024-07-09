@@ -1,7 +1,7 @@
 'use client'
 
 import Elements from '@/components/Elements'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/button'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { FormEvent, useState } from 'react'
 

@@ -51,7 +51,7 @@ export function TagInput({
 
   useEffect(() => {
     onTagsChange?.(Array.from(tags))
-  }, [tags])
+  }, [onTagsChange, tags])
 
   return (
     <div
@@ -75,6 +75,7 @@ export function TagInput({
               'h-6 pl-1.5 pr-1 text-xl': ['md', 'lg'].includes(size),
             },
           )}
+          key={tag}
           onClick={() => deleteTag(tag)}
         >
           {tag}

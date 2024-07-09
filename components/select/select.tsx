@@ -9,3 +9,5 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     <select className={cn(styles.select, className)} ref={ref} {...props} />
   ),
 )
+
+Select.displayName = 'Select'

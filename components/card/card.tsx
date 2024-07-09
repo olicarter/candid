@@ -11,6 +11,8 @@ export const Root = forwardRef<HTMLDivElement, RootProps>(
   ),
 )
 
+Root.displayName = 'CardRoot'
+
 export type HeaderProps = HTMLAttributes<HTMLElement>
 
 export const Header = forwardRef<HTMLElement, HeaderProps>(
@@ -18,6 +20,8 @@ export const Header = forwardRef<HTMLElement, HeaderProps>(
     <header className={cn(styles.header, className)} ref={ref} {...props} />
   ),
 )
+
+Header.displayName = 'CardHeader'
 
 export type TitleProps = HTMLAttributes<HTMLHeadingElement>
 
@@ -27,6 +31,8 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
   ),
 )
 
+Title.displayName = 'CardTitle'
+
 export type DescriptionProps = HTMLAttributes<HTMLParagraphElement>
 
 export const Description = forwardRef<HTMLParagraphElement, DescriptionProps>(
@@ -35,6 +41,8 @@ export const Description = forwardRef<HTMLParagraphElement, DescriptionProps>(
   ),
 )
 
+Description.displayName = 'CardDescription'
+
 export type ContentProps = HTMLAttributes<HTMLDivElement>
 
 export const Content = forwardRef<HTMLDivElement, ContentProps>(
@@ -42,6 +50,8 @@ export const Content = forwardRef<HTMLDivElement, ContentProps>(
     <div className={cn(styles.content, className)} ref={ref} {...props} />
   ),
 )
+
+Content.displayName = 'CardContent'
 
 export interface FooterProps extends HTMLAttributes<HTMLElement> {
   asChild?: boolean
@@ -55,3 +65,5 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
     )
   },
 )
+
+Footer.displayName = 'CardFooter'

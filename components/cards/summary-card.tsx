@@ -11,7 +11,7 @@ export function SummaryCard() {
       </Card.Header>
       <Card.Content>
         <p>
-          Over the past month, you've received a mix of positive and
+          Over the past month, you&apos;ve received a mix of positive and
           constructive feedback. Your colleagues have praised your exceptional
           teamwork and dedication, noting that your positive attitude has been a
           great boost to morale. However, some team members have suggested that

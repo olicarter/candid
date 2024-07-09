@@ -49,3 +49,5 @@ export const PersonalDetailsCard = forwardRef<
     </Card.Content>
   </Card.Root>
 ))
+
+PersonalDetailsCard.displayName = 'PersonalDetailsCard'

@@ -12,6 +12,7 @@ interface SubmitButtonProps extends ButtonProps {
 
 export function SubmitButton({
   children,
+  onPendingEnd,
   pendingText,
   ...props
 }: SubmitButtonProps) {
@@ -21,8 +22,8 @@ export function SubmitButton({
   const isPendingPrev = !!usePrevious(isPending)
 
   useEffect(() => {
-    if (isPendingPrev && !isPending) props.onPendingEnd?.()
-  }, [isPending, isPendingPrev])
+    if (isPendingPrev && !isPending) onPendingEnd?.()
+  }, [isPending, isPendingPrev, onPendingEnd])
 
   return (
     <Button {...props} disabled={isPending} type="submit">

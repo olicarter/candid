@@ -15,6 +15,8 @@ export const Root = forwardRef<HTMLFormElement, RootProps>(
   ),
 )
 
+Root.displayName = 'FormRoot'
+
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement>
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(
@@ -23,6 +25,8 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
   ),
 )
 
+Label.displayName = 'FormLabel'
+
 export type FooterProps = HTMLAttributes<HTMLElement>
 
 export const Footer = forwardRef<HTMLElement, FooterProps>(
@@ -30,3 +34,5 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
     <footer className={cn(styles.footer, className)} ref={ref} {...props} />
   ),
 )
+
+Footer.displayName = 'FormFooter'
