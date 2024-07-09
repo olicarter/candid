@@ -13,7 +13,20 @@ import { Fragment } from 'react'
 import { format, isToday, isYesterday } from 'date-fns'
 import styles from './recent-meetings-card.module.css'
 
-const data = [
+interface Meeting {
+  id: string
+  name: string
+  startDate: string
+  endDate: string
+  attendees: {
+    id: string
+    firstName: string
+    avatarUrl: string
+    jobTitle: string
+  }[]
+}
+
+const data: Meeting[] = [
   {
     id: 'd9f61cf2-465a-5503-8d1d-0e71a11e5702',
     name: 'Retro',
@@ -119,12 +132,15 @@ const data = [
 ]
 
 export function RecentMeetingsCard() {
-  const meetingsGroupedByDate = data.reduce((acc, meeting) => {
-    const date = new Date(meeting.startDate).toDateString()
-    acc[date] = acc[date] || []
-    acc[date].push(meeting)
-    return acc
-  }, {})
+  const meetingsGroupedByDate = data.reduce<Record<string, Meeting[]>>(
+    (acc, meeting) => {
+      const date = new Date(meeting.startDate).toDateString()
+      acc[date] = acc[date] || []
+      acc[date].push(meeting)
+      return acc
+    },
+    {},
+  )
   const dates = Object.keys(meetingsGroupedByDate)
 
   return (
@@ -163,19 +179,7 @@ export function RecentMeetingsCard() {
   )
 }
 
-function RecentMeeting(props: {
-  meeting: {
-    name: string
-    startDate: string
-    endDate: string
-    attendees: {
-      id: string
-      firstName: string
-      avatarUrl: string
-      jobTitle: string
-    }[]
-  }
-}) {
+function RecentMeeting(props: { meeting: Meeting }) {
   return (
     <Dialog>
       <DialogTrigger asChild>

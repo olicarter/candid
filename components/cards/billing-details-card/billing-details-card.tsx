@@ -18,7 +18,7 @@ import { UpdateAddressCard } from '@/components/cards/update-address-card'
 import { getCustomer } from '@/lib/stripe'
 
 export async function BillingDetailsCard(props: {
-  paymentMethod: PaymentMethod | null
+  card: PaymentMethod.Card | null
 }) {
   const customer = await getCustomer()
 
@@ -46,24 +46,23 @@ export async function BillingDetailsCard(props: {
         <Form.Root>
           <Form.Label>Payment Method</Form.Label>
           <div className={styles.paymentMethod}>
-            {props.paymentMethod?.card && (
+            {props.card && (
               <>
                 <div
                   className={cn(
                     styles.card,
-                    props.paymentMethod.card.brand === 'mastercard' &&
-                      styles.mastercard,
-                    props.paymentMethod.card.brand === 'visa' && styles.visa,
+                    props.card.brand === 'mastercard' && styles.mastercard,
+                    props.card.brand === 'visa' && styles.visa,
                   )}
                 >
-                  {props.paymentMethod.card.brand === 'mastercard' && (
+                  {props.card.brand === 'mastercard' && (
                     <SiMastercard className={styles.icon} />
                   )}
-                  {props.paymentMethod.card.brand === 'visa' && (
+                  {props.card.brand === 'visa' && (
                     <SiVisa className={styles.icon} />
                   )}
                 </div>
-                <span>····{props.paymentMethod.card.last4}</span>
+                <span>····{props.card.last4}</span>
               </>
             )}
           </div>

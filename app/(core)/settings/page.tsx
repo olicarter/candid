@@ -33,6 +33,8 @@ export default async function TeamPage() {
 
   const organization = await getOrganization()
 
+  if (!organization) redirect('/')
+
   // const { data: teams } = await supabase
   //   .from('teams')
   //   .select('*, members:profiles!teams_members(*)')
@@ -59,7 +61,7 @@ export default async function TeamPage() {
           userIdentities={getUserIdentitiesData?.identities}
         />
         <OrganizationDetailsCard organization={organization} />
-        <BillingDetailsCard paymentMethod={stripePaymentMethod ?? null} />
+        <BillingDetailsCard card={stripePaymentMethod.card ?? null} />
         <AccountActionsCard />
       </div>
       <div>

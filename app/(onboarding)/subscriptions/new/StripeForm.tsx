@@ -1,18 +1,18 @@
 'use client'
 
-import Elements from '@/components/Elements'
 import { Button } from '@/components/button'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import { StripeError } from '@stripe/stripe-js'
 import { FormEvent, useState } from 'react'
 
 export default function StripeForm(props: { clientSecret: string }) {
   const stripe = useStripe()
   const elements = useElements()
 
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState<string>()
   const [loading, setLoading] = useState(false)
 
-  const handleError = error => {
+  const handleError = (error: StripeError) => {
     setLoading(false)
     setErrorMessage(error.message)
   }

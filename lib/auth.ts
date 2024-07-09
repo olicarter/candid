@@ -95,5 +95,16 @@ export async function getOrganizationMembers() {
     throw getProfileError;
   }
 
-  return profile.members[0].organization.members;
+  // Improve typing
+  type Organization = {
+    members: {
+      profile: {
+        profiles_roles: {
+          role: "admin" | "participant";
+        }[];
+      }[];
+    }[];
+  };
+
+  return (profile.members[0].organization as unknown as Organization).members;
 }
