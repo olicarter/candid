@@ -7,7 +7,7 @@ export async function getCustomer() {
 
   const organization = await getOrganization();
 
-  if (!organization.stripe_customer_id) return null;
+  if (!organization?.stripe_customer_id) return null;
 
   const customer = await stripe.customers.retrieve(
     organization.stripe_customer_id,
