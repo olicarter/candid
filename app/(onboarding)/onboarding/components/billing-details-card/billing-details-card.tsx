@@ -23,6 +23,7 @@ import { forwardRef } from 'react'
 export interface BillingDetailsCardProps {
   address: Stripe.Address | null
   onBack: BackButtonProps['onClick']
+  onSubmit: Form.RootProps['onSubmit']
   paymentMethod?: PaymentMethod | null
 }
 
@@ -49,7 +50,7 @@ export const BillingDetailsCard = forwardRef<
         <Card.Description>Lorem ipsum foo bar.</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Form.Root>
+        <Form.Root onSubmit={props.onSubmit}>
           <Form.Label>Payment Method</Form.Label>
           <div className={styles.field}>
             <div className={styles.paymentMethod}>
