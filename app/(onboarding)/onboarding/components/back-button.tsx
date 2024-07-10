@@ -3,10 +3,11 @@
 import { Button, type ButtonProps } from '@/components/button'
 import { decrementOnboardingStep } from '../actions/decrementOnboardingStep'
 
-export type BackButtonProps = Pick<ButtonProps, 'onClick'>
+export type BackButtonProps = ButtonProps
 
 export const BackButton = (props: BackButtonProps) => (
   <Button
+    {...props}
     onClick={e => {
       props.onClick?.(e)
       decrementOnboardingStep()

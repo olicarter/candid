@@ -22,6 +22,7 @@ import { forwardRef } from 'react'
 import { updateBillingDetails } from '../../actions/updateBillingDetails'
 
 export interface BillingDetailsCardProps {
+  active: boolean
   address: Stripe.Address | null
   onBack: BackButtonProps['onClick']
   paymentMethod?: PaymentMethod | null
@@ -31,6 +32,8 @@ export const BillingDetailsCard = forwardRef<
   HTMLDivElement,
   BillingDetailsCardProps
 >((props, ref) => {
+  const tabIndex = props.active ? 0 : -1
+
   const addressParts = [
     props.address?.line1,
     props.address?.line2,
@@ -77,7 +80,7 @@ export const BillingDetailsCard = forwardRef<
             </div>
             <Dialog>
               <DialogTrigger asChild>
-                <Button>Add card</Button>
+                <Button tabIndex={tabIndex}>Add card</Button>
               </DialogTrigger>
               <DialogPortal>
                 <DialogOverlay />
@@ -89,10 +92,16 @@ export const BillingDetailsCard = forwardRef<
           </div>
           <Form.Label>Billing Address</Form.Label>
           <div className={styles.field}>
-            <Input className="grow" readOnly type="text" value={addressValue} />
+            <Input
+              className="grow"
+              readOnly
+              tabIndex={tabIndex}
+              type="text"
+              value={addressValue}
+            />
             <Dialog>
               <DialogTrigger asChild>
-                <Button>Update</Button>
+                <Button tabIndex={tabIndex}>Update</Button>
               </DialogTrigger>
               <DialogPortal>
                 <DialogOverlay />
@@ -103,10 +112,11 @@ export const BillingDetailsCard = forwardRef<
             </Dialog>
           </div>
           <Form.Footer>
-            <BackButton onClick={props.onBack} />
+            <BackButton onClick={props.onBack} tabIndex={tabIndex} />
             <SubmitButton
               formAction={updateBillingDetails}
               pendingText="Saving..."
+              tabIndex={tabIndex}
             >
               Continue
             </SubmitButton>

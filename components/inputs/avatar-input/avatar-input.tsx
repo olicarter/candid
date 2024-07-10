@@ -31,7 +31,11 @@ export function AvatarInput({
   return (
     <div className={styles.avatarField}>
       <Avatar className={styles.avatar} src={avatarSrc} />
-      <Button onClick={() => inputRef.current?.click()} type="button">
+      <Button
+        onClick={() => inputRef.current?.click()}
+        tabIndex={props.tabIndex}
+        type="button"
+      >
         Upload file
       </Button>
       <input

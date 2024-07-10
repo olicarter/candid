@@ -42,6 +42,7 @@ export function Steps(props: {
             checked={optimisticStep === index}
             key={index}
             style={{ gridColumnStart: index + 5 }}
+            tabIndex={optimisticStep === index ? 0 : -1}
             type="radio"
           />
         ))}
@@ -57,17 +58,31 @@ export function Steps(props: {
           }}
         >
           <PersonalDetailsCard
+            active={optimisticStep === 0}
             onSubmit={goToNextStep}
             profile={props.profile}
           />
           <OrganizationDetailsCard
+            active={optimisticStep === 1}
             onBack={goToPrevStep}
             onSubmit={goToNextStep}
             organization={props.organization}
           />
-          <AIPreferencesCard onBack={goToPrevStep} onSubmit={goToNextStep} />
-          <IntegrationsCard onBack={goToPrevStep} onSubmit={goToNextStep} />
-          <BillingDetailsCard address={props.address} onBack={goToPrevStep} />
+          <AIPreferencesCard
+            active={optimisticStep === 2}
+            onBack={goToPrevStep}
+            onSubmit={goToNextStep}
+          />
+          <IntegrationsCard
+            active={optimisticStep === 3}
+            onBack={goToPrevStep}
+            onSubmit={goToNextStep}
+          />
+          <BillingDetailsCard
+            active={optimisticStep === 4}
+            address={props.address}
+            onBack={goToPrevStep}
+          />
         </ul>
       </div>
     </>
