@@ -19,11 +19,11 @@ import { SubmitButton } from '@/components/submit-button'
 import { BackButton, BackButtonProps } from '../back-button'
 import Stripe from 'stripe'
 import { forwardRef } from 'react'
+import { updateBillingDetails } from '../../actions/updateBillingDetails'
 
 export interface BillingDetailsCardProps {
   address: Stripe.Address | null
   onBack: BackButtonProps['onClick']
-  onSubmit: Form.RootProps['onSubmit']
   paymentMethod?: PaymentMethod | null
 }
 
@@ -50,7 +50,7 @@ export const BillingDetailsCard = forwardRef<
         <Card.Description>Lorem ipsum foo bar.</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Form.Root onSubmit={props.onSubmit}>
+        <Form.Root action={updateBillingDetails}>
           <Form.Label>Payment Method</Form.Label>
           <div className={styles.field}>
             <div className={styles.paymentMethod}>
@@ -104,7 +104,12 @@ export const BillingDetailsCard = forwardRef<
           </div>
           <Form.Footer>
             <BackButton onClick={props.onBack} />
-            <SubmitButton pendingText="Saving...">Continue</SubmitButton>
+            <SubmitButton
+              formAction={updateBillingDetails}
+              pendingText="Saving..."
+            >
+              Continue
+            </SubmitButton>
           </Form.Footer>
         </Form.Root>
       </Card.Content>

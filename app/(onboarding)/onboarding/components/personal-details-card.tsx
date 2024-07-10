@@ -36,6 +36,7 @@ export const PersonalDetailsCard = forwardRef<
           autoComplete="organization-title"
           defaultValue={props.profile?.job_title ?? undefined}
           name="job_title"
+          required
           type="text"
         />
         <Form.Label>Avatar</Form.Label>

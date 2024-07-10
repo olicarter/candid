@@ -25,7 +25,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
 
   return (
     <>
-      <section className="max-w-screen-xl px-8 w-full">
+      <section className={styles.section}>
         {profile ? (
           <Nav />
         ) : (

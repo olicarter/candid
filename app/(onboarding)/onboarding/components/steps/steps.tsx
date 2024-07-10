@@ -9,7 +9,6 @@ import { IntegrationsCard } from '../integrations-card'
 import { OrganizationDetailsCard } from '../organization-details-card'
 import { PersonalDetailsCard } from '../personal-details-card'
 import styles from './steps.module.css'
-import { useRouter } from 'next/navigation'
 
 export function Steps(props: {
   address: Stripe.Address | null
@@ -21,8 +20,6 @@ export function Steps(props: {
   }
 
   const stepsCount = 5
-
-  const { push } = useRouter()
 
   const [optimisticStep, setOptimisticStep] = useOptimistic<number, number>(
     props.profile.onboarding_step,
@@ -70,11 +67,7 @@ export function Steps(props: {
           />
           <AIPreferencesCard onBack={goToPrevStep} onSubmit={goToNextStep} />
           <IntegrationsCard onBack={goToPrevStep} onSubmit={goToNextStep} />
-          <BillingDetailsCard
-            address={props.address}
-            onBack={goToPrevStep}
-            onSubmit={() => push('/')}
-          />
+          <BillingDetailsCard address={props.address} onBack={goToPrevStep} />
         </ul>
       </div>
     </>

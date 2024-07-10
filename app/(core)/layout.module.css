@@ -1,3 +1,8 @@
+.section {
+  @apply px-4 sm:px-8 max-w-screen-xl;
+  width: 100%;
+}
+
 .navWrapper {
   background-color: var(--color-card-background);
   border-radius: 1rem;
@@ -6,11 +11,10 @@
 }
 
 .hero {
+  @apply p-8 lg:p-12 grid-cols-1 lg:grid-cols-2;
   align-items: center;
   display: grid;
   gap: 4rem;
-  grid-template-columns: 1fr 1fr;
-  padding: 4rem;
 }
 
 .hero > :last-child {
@@ -54,8 +58,7 @@
 }
 
 .hero .avatar {
-  height: 8rem;
-  width: 8rem;
+  @apply size-24 sm:size-32 lg:size-24 xl:size-32;
 }
 
 .main {
@@ -65,10 +68,4 @@
   grid-template-columns: 1fr 1fr;
   max-width: 1280px;
   padding: 0 2rem;
-}
-
-@media (max-width: 1024px) {
-  .main {
-    grid-template-columns: 1fr; /* Switch to one column for screens smaller than 768px */
-  }
 }
