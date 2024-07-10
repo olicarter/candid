@@ -41,7 +41,7 @@ export async function Nav(props: { className?: string }) {
         )}
         {!profile && (
           <form action={signInWithGoogle}>
-            <Button>Get started</Button>
+            <Button>Sign in with Google</Button>
           </form>
         )}
       </div>
