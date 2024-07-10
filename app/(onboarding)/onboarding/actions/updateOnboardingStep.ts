@@ -13,8 +13,10 @@ export async function updateOnboardingStep(formData: FormData) {
 
   const supabase = createClient();
 
+  let step = formData.get("step") as string;
+
   const { error } = await supabase.from("profiles").update({
-    onboarding_step: Number(formData.get("step")),
+    onboarding_step: step === "" ? null : Number(step),
   }).eq("id", user.id);
 
   if (error) throw error;
