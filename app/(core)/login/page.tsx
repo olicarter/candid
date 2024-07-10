@@ -7,9 +7,7 @@ export default async function LoginPage() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}/auth/callback`
-        : 'http://localhost:3001/auth/callback',
+      redirectTo: `${process.env.APP_URL}/auth/callback`,
     },
   })
 

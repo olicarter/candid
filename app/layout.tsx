@@ -4,12 +4,8 @@ import { cn } from '@/lib/utils'
 import '@/app/globals.css'
 import { getProfile } from '@/lib/auth'
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3001'
-
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL(`${process.env.APP_URL}`),
   title: 'Candid | Feedback for humans',
   description: 'Feedback for humans',
 }
