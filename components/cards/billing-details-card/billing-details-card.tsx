@@ -45,51 +45,55 @@ export async function BillingDetailsCard(props: {
       <Card.Content>
         <Form.Root>
           <Form.Label>Payment Method</Form.Label>
-          <div className={styles.paymentMethod}>
-            {props.card && (
-              <>
-                <div
-                  className={cn(
-                    styles.card,
-                    props.card.brand === 'mastercard' && styles.mastercard,
-                    props.card.brand === 'visa' && styles.visa,
-                  )}
-                >
-                  {props.card.brand === 'mastercard' && (
-                    <SiMastercard className={styles.icon} />
-                  )}
-                  {props.card.brand === 'visa' && (
-                    <SiVisa className={styles.icon} />
-                  )}
-                </div>
-                <span>····{props.card.last4}</span>
-              </>
-            )}
+          <div className={styles.field}>
+            <div className={styles.paymentMethod}>
+              {props.card && (
+                <>
+                  <div
+                    className={cn(
+                      styles.card,
+                      props.card.brand === 'mastercard' && styles.mastercard,
+                      props.card.brand === 'visa' && styles.visa,
+                    )}
+                  >
+                    {props.card.brand === 'mastercard' && (
+                      <SiMastercard className={styles.icon} />
+                    )}
+                    {props.card.brand === 'visa' && (
+                      <SiVisa className={styles.icon} />
+                    )}
+                  </div>
+                  <span>····{props.card.last4}</span>
+                </>
+              )}
+            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button>Add card</Button>
+              </DialogTrigger>
+              <DialogPortal>
+                <DialogOverlay />
+                <DialogContent>
+                  <PaymentMethodCard />
+                </DialogContent>
+              </DialogPortal>
+            </Dialog>
           </div>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>Add card</Button>
-            </DialogTrigger>
-            <DialogPortal>
-              <DialogOverlay />
-              <DialogContent>
-                <PaymentMethodCard />
-              </DialogContent>
-            </DialogPortal>
-          </Dialog>
           <Form.Label>Billing Address</Form.Label>
-          <Input className="grow" readOnly type="text" value={addressValue} />
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>Update</Button>
-            </DialogTrigger>
-            <DialogPortal>
-              <DialogOverlay />
-              <DialogContent>
-                <UpdateAddressCard address={customer.address} />
-              </DialogContent>
-            </DialogPortal>
-          </Dialog>
+          <div className={styles.field}>
+            <Input className="grow" readOnly type="text" value={addressValue} />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button>Update</Button>
+              </DialogTrigger>
+              <DialogPortal>
+                <DialogOverlay />
+                <DialogContent>
+                  <UpdateAddressCard address={customer.address} />
+                </DialogContent>
+              </DialogPortal>
+            </Dialog>
+          </div>
         </Form.Root>
       </Card.Content>
     </Card.Root>

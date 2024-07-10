@@ -51,7 +51,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
           </div>
         )}
       </section>
-      <div className="max-w-screen-xl">{props.children}</div>
+      <main className={styles.main}>{props.children}</main>
     </>
   )
 }

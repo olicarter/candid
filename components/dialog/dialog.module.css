@@ -10,9 +10,9 @@
 }
 
 .overlay {
-  background-color: black;
+  backdrop-filter: blur(0.25rem);
+  background-color: rgba(0, 0, 0, 0.5);
   inset: 0;
-  opacity: 0.6;
   position: fixed;
   z-index: 50;
 }

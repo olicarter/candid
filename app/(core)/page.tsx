@@ -12,16 +12,16 @@ export default async function IndexPage() {
   if (!user) return null
 
   return (
-    <div className={styles.main}>
-      <div>
+    <>
+      <div className={styles.column}>
         <SummaryCard />
         <ValuesCard />
         <SentimentCard />
       </div>
-      <div>
+      <div className={styles.column}>
         <RecentInteractionsCard />
         <RecentMeetingsCard />
       </div>
-    </div>
+    </>
   )
 }

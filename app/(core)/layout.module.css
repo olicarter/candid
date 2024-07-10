@@ -57,3 +57,18 @@
   height: 8rem;
   width: 8rem;
 }
+
+.main {
+  align-items: start;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1280px;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr; /* Switch to one column for screens smaller than 768px */
+  }
+}

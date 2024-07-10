@@ -1,15 +1,15 @@
-import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import getStripe from '@/utils/stripe'
+import { createClient } from '@/utils/supabase/server'
 import { getOrganization, getProfile } from '@/lib/auth'
-import { PersonalDetailsCard } from '@/components/cards/personal-details-card'
-import { OrganizationDetailsCard } from '@/components/cards/organization-details-card'
-import { BillingDetailsCard } from '@/components/cards/billing-details-card'
 import { AIPreferencesCard } from '@/components/cards/ai-preferences-card'
-import { IntegrationsCard } from '@/components/cards/integrations-card'
-import { ThemeSelectionCard } from '@/components/cards/theme-selection-card'
-import styles from './settings.module.css'
 import { AccountActionsCard } from '@/components/cards/account-actions-card'
+import { BillingDetailsCard } from '@/components/cards/billing-details-card'
+import { IntegrationsCard } from '@/components/cards/integrations-card'
+import { OrganizationDetailsCard } from '@/components/cards/organization-details-card'
+import { PersonalDetailsCard } from '@/components/cards/personal-details-card'
+import { ThemeSelectionCard } from '@/components/cards/theme-selection-card'
+import styles from './page.module.css'
 
 export default async function TeamPage() {
   const supabase = createClient()
@@ -54,8 +54,8 @@ export default async function TeamPage() {
   )
 
   return (
-    <div className={styles.main}>
-      <div>
+    <>
+      <div className={styles.column}>
         <PersonalDetailsCard
           profile={profile}
           userIdentities={getUserIdentitiesData?.identities}
@@ -64,12 +64,12 @@ export default async function TeamPage() {
         <BillingDetailsCard card={stripePaymentMethod?.card ?? null} />
         <AccountActionsCard />
       </div>
-      <div>
+      <div className={styles.column}>
         <ThemeSelectionCard theme={profile.theme} />
         <AIPreferencesCard />
         <IntegrationsCard />
       </div>
-    </div>
+    </>
     // <div className="gap-x-8 gap-y-24 grid sm:grid-cols-2 max-w-screen-md px-8 py-24 w-full">
     //   <section className="col-span-full flex flex-col gap-4 items-center">
     //     <div className="bg-orange-300 rounded-full size-32" />

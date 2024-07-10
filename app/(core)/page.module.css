@@ -1,13 +1,15 @@
-.main {
-  align-items: start;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr 1fr;
-  padding: 0 2rem;
-}
-
-.main > div {
+.column {
   display: flex;
   flex-direction: column;
   gap: inherit;
+}
+
+@media (max-width: 1024px) {
+  .column:first-of-type {
+    order: 2;
+  }
+
+  .column:last-of-type {
+    order: 1;
+  }
 }

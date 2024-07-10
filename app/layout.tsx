@@ -24,7 +24,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
       data-theme={profile?.theme ?? 'emerald'}
     >
       <body className="flex flex-col items-center">
-        <div className="flex flex-col items-center min-h-screen py-8 gap-8 w-full">
+        <div className="flex flex-col items-center min-h-screen py-8 gap-8 w-full *:w-full">
           {props.children}
         </div>
       </body>
