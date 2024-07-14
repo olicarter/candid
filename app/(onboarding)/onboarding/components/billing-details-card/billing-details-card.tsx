@@ -82,12 +82,9 @@ export const BillingDetailsCard = forwardRef<
               <DialogTrigger asChild>
                 <Button tabIndex={tabIndex}>Add card</Button>
               </DialogTrigger>
-              <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                  <PaymentMethodCard />
-                </DialogContent>
-              </DialogPortal>
+              <DialogContent>
+                <PaymentMethodCard />
+              </DialogContent>
             </Dialog>
           </div>
           <Form.Label>Billing Address</Form.Label>
@@ -103,12 +100,9 @@ export const BillingDetailsCard = forwardRef<
               <DialogTrigger asChild>
                 <Button tabIndex={tabIndex}>Update</Button>
               </DialogTrigger>
-              <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                  <UpdateAddressCard address={props.address} />
-                </DialogContent>
-              </DialogPortal>
+              <DialogContent>
+                <UpdateAddressCard address={props.address} />
+              </DialogContent>
             </Dialog>
           </div>
           <Form.Footer>

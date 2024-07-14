@@ -71,12 +71,9 @@ export async function BillingDetailsCard(props: {
               <DialogTrigger asChild>
                 <Button>Add card</Button>
               </DialogTrigger>
-              <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                  <PaymentMethodCard />
-                </DialogContent>
-              </DialogPortal>
+              <DialogContent>
+                <PaymentMethodCard />
+              </DialogContent>
             </Dialog>
           </div>
           <Form.Label>Billing Address</Form.Label>
@@ -86,12 +83,9 @@ export async function BillingDetailsCard(props: {
               <DialogTrigger asChild>
                 <Button>Update</Button>
               </DialogTrigger>
-              <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                  <UpdateAddressCard address={customer.address} />
-                </DialogContent>
-              </DialogPortal>
+              <DialogContent>
+                <UpdateAddressCard address={customer.address} />
+              </DialogContent>
             </Dialog>
           </div>
         </Form.Root>

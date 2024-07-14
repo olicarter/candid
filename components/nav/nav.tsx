@@ -5,6 +5,7 @@ import { Button } from '@/components/button'
 import { cn } from '@/lib/utils'
 import { signInWithGoogle } from '@/actions/signInWithGoogle'
 import styles from './nav.module.css'
+import { SubmitButton } from '../submit-button'
 
 export async function Nav(props: { className?: string }) {
   const profile = await getProfile()
@@ -18,10 +19,10 @@ export async function Nav(props: { className?: string }) {
         props.className,
       )}
     >
-      <div className="flex gap-6">
+      <div className="flex gap-[inherit]">
         <span className={styles.logo}>{profile ? 'C.' : 'Candid'}</span>
         {profile && organization && (
-          <nav className="flex gap-2">
+          <nav>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/settings">Settings</NavLink>
           </nav>
@@ -41,7 +42,12 @@ export async function Nav(props: { className?: string }) {
         )}
         {!profile && (
           <form action={signInWithGoogle}>
-            <Button>Sign in</Button>
+            <SubmitButton
+              formAction={signInWithGoogle}
+              pendingText="Signing in..."
+            >
+              Sign in
+            </SubmitButton>
           </form>
         )}
       </div>

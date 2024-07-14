@@ -43,7 +43,7 @@ export function SelectMeetingAttendeeCard(props: {
     <Card.Root>
       <Card.Header>
         <DialogTitle asChild>
-          <Card.Title>Select Meeting Attendees</Card.Title>
+          <Card.Title>Select Meeting Attendee</Card.Title>
         </DialogTitle>
         <DialogDescription asChild>
           <Card.Description>

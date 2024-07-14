@@ -202,12 +202,9 @@ function RecentMeeting(props: { meeting: Meeting }) {
           </ul>
         </button>
       </DialogTrigger>
-      <DialogPortal>
-        <DialogOverlay />
-        <DialogContent>
-          <SelectMeetingAttendeeCard meeting={props.meeting} />
-        </DialogContent>
-      </DialogPortal>
+      <DialogContent>
+        <SelectMeetingAttendeeCard meeting={props.meeting} />
+      </DialogContent>
     </Dialog>
   )
 }

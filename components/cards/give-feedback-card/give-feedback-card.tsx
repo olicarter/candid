@@ -8,6 +8,7 @@ import { Button } from '@/components/button'
 import { Textarea } from '@/components/textarea'
 import { DialogClose } from '@/components/dialog'
 import styles from './give-feedback-card.module.css'
+import { SubmitButton } from '@/components/submit-button'
 
 export function GiveFeedbackCard(props: {
   onRecipientChangeClick?: IconButtonProps['onClick']
@@ -44,7 +45,7 @@ export function GiveFeedbackCard(props: {
             </ProfileCard.Button>
           </ProfileCard.Root>
           <Form.Label>Feedback</Form.Label>
-          <Textarea rows={6} />
+          <Textarea required rows={6} />
           <Form.Label>Sentiment</Form.Label>
           <div className={styles.sentimentButtons}>
             <Button disabled variant="red">
@@ -61,7 +62,7 @@ export function GiveFeedbackCard(props: {
             <DialogClose asChild>
               <Button variant="light">Cancel</Button>
             </DialogClose>
-            <Button variant="primary">Submit anonymous feedback</Button>
+            <SubmitButton>Submit feedback</SubmitButton>
           </Form.Footer>
         </Form.Root>
       </Card.Content>

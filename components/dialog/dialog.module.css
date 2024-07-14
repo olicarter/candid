@@ -1,20 +1,80 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(1.05) translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutShrink {
+  from {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translate(-50%, -50%);
+  }
+}
+
 .dialog {
   border-radius: 1rem;
   left: 50%;
   max-width: 36rem;
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: left top;
   width: 100%;
   z-index: 50;
 }
 
 .overlay {
-  backdrop-filter: blur(0.25rem);
+  align-items: center;
+  backdrop-filter: blur(0.5rem);
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
   inset: 0;
+  justify-content: center;
   position: fixed;
   z-index: 50;
+}
+
+.dialog[data-state='open'] {
+  animation: fadeInGrow 300ms ease-out;
+}
+
+.dialog[data-state='closed'] {
+  animation: fadeOutShrink 75ms ease-in;
+}
+
+.overlay[data-state='open'] {
+  animation: fadeIn 400ms ease-out;
+}
+
+.overlay[data-state='closed'] {
+  animation: fadeOut 75ms ease-in;
 }
 
 .close {

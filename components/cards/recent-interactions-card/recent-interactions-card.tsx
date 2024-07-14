@@ -61,12 +61,9 @@ export function RecentInteractionsCard() {
                   </button>
                 </ProfileCard.Root>
               </DialogTrigger>
-              <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                  <GiveFeedbackCard recipient={user} />
-                </DialogContent>
-              </DialogPortal>
+              <DialogContent>
+                <GiveFeedbackCard recipient={user} />
+              </DialogContent>
             </Dialog>
           ))}
         </ul>
