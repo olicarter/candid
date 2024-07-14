@@ -5,16 +5,20 @@ import styles from './button.module.css'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
+  size?: 'sm' | 'md' | 'lg'
   variant?: 'primary' | 'light' | 'red' | 'amber' | 'green'
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild = false, className, variant = 'primary', ...props }, ref) => {
+  (
+    { asChild = false, className, size = 'md', variant = 'primary', ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : 'button'
 
     return (
       <Comp
-        className={cn(styles.button, styles[variant], className)}
+        className={cn(styles.button, styles[size], styles[variant], className)}
         ref={ref}
         {...props}
       />

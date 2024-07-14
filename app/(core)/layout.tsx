@@ -22,6 +22,8 @@ import {
   SiTwitter,
   SiVisa,
 } from '@icons-pack/react-simple-icons'
+import { SubmitButton } from '@/components/submit-button'
+import { signInWithGoogle } from '@/actions/signInWithGoogle'
 
 export default async function RootLayout(props: { children: ReactNode }) {
   const supabase = createClient()
@@ -38,86 +40,57 @@ export default async function RootLayout(props: { children: ReactNode }) {
   }
 
   return (
-    <div className={styles.main}>
-      <section className={styles.section}>
-        <Nav />
-      </section>
-      {!user && (
-        <>
-          <section className={styles.section}>
-            <div className={styles.hero}>
-              <div>
-                <h1>Team feedback you&apos;ll love</h1>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Molestiae modi aperiam repellat at adipisci, vitae ullam dicta
-                  rem asperiores impedit voluptatem. Voluptatem eius laudantium
-                  voluptatibus, eos quos deleniti esse facilis.
-                </p>
-              </div>
-              <div className={styles.imagePlaceholder} />
+    <>
+      {user ? (
+        <section className={styles.section}>
+          <Nav />
+        </section>
+      ) : (
+        <div className="grow flex flex-col justify-between h-[calc(100svh-4rem-16vmin)] w-full">
+          <section className={styles.hero}>
+            <div className="flex flex-col gap-[4vmin]">
+              <h1>Candid</h1>
+              <p>AI-powered feedback for better teams</p>
+              <form
+                action={signInWithGoogle}
+                className="flex justify-center mt-[4vmin]"
+              >
+                <SubmitButton
+                  formAction={signInWithGoogle}
+                  pendingText="Signing in..."
+                  size="lg"
+                >
+                  Sign in with Google
+                </SubmitButton>
+              </form>
             </div>
+            <Marquee autoFill speed={40} gradient gradientColor="#022c22">
+              {[
+                SiAmazon,
+                SiApple,
+                SiEbay,
+                SiEtsy,
+                SiFacebook,
+                SiGoogle,
+                SiLinkedin,
+                SiMastercard,
+                SiMicrosoft,
+                SiNetflix,
+                SiPaypal,
+                SiSpotify,
+                SiTwitter,
+                SiVisa,
+              ].map((Comp, i) => (
+                <Comp
+                  className="mr-[12vmin] size-[calc(2vmin+1.5rem)]"
+                  key={i}
+                />
+              ))}
+            </Marquee>
           </section>
-          <section className={styles.section}>
-            <div className={styles.clients}>
-              <h3>Used by the sharpest tools in the shed</h3>
-              <Marquee speed={40} gradient gradientColor="#022c22">
-                {[
-                  SiAmazon,
-                  SiApple,
-                  SiEbay,
-                  SiEtsy,
-                  SiFacebook,
-                  SiGoogle,
-                  SiLinkedin,
-                  SiMastercard,
-                  SiMicrosoft,
-                  SiNetflix,
-                  SiPaypal,
-                  SiSpotify,
-                  SiTwitter,
-                  SiVisa,
-                ].map((Comp, i) => (
-                  <Comp
-                    className="mr-[12vmin] size-[calc(4vmin+1rem)]"
-                    key={i}
-                  />
-                ))}
-              </Marquee>
-            </div>
-          </section>
-          <section className={styles.section}>
-            <div className={styles.hero}>
-              <div className={styles.imagePlaceholder} />
-              <div>
-                <h3>Dont stress about tone</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  optio veniam, distinctio doloribus molestias a alias quos
-                  iusto eos ipsum rem eveniet, quis quaerat temporibus
-                  reprehenderit aliquid ex dolorem nihil.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section className={styles.section}>
-            <div className={styles.hero}>
-              <div>
-                <h3>Cultivate a vibrant culture</h3>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quidem iusto adipisci, quisquam fugiat architecto perferendis
-                  reiciendis iste tenetur aspernatur minima placeat mollitia rem
-                  corporis? Eligendi temporibus assumenda quos dolorum!
-                  Voluptatem?
-                </p>
-              </div>
-              <div className={styles.imagePlaceholder} />
-            </div>
-          </section>
-        </>
+        </div>
       )}
       <main className={styles.content}>{props.children}</main>
-    </div>
+    </>
   )
 }

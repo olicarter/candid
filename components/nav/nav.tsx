@@ -20,7 +20,7 @@ export async function Nav(props: { className?: string }) {
       )}
     >
       <div className="flex gap-[inherit]">
-        <span className={styles.logo}>{profile ? 'C.' : 'Candid'}</span>
+        <span className={styles.logo}>C.</span>
         {profile && organization && (
           <nav>
             <NavLink href="/">Home</NavLink>
