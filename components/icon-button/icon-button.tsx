@@ -18,6 +18,7 @@ export function IconButton({
   return (
     <button
       className={cn(styles.button, styles[variant], className)}
+      type="button"
       {...props}
     >
       <Icon size={20} strokeWidth={2} />

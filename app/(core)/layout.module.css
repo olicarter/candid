@@ -1,71 +1,99 @@
 .section {
-  @apply px-4 sm:px-8 max-w-screen-xl;
+  padding: 0 4vmin;
   width: 100%;
 }
 
-.navWrapper {
-  background-color: var(--color-card-background);
+.hero {
+  @apply flex-col-reverse lg:flex-row;
+  align-items: center;
+  border-radius: 1rem;
+  display: flex;
+  gap: 4vmin;
+  height: 0;
+  min-height: calc(66svh - 8vmin);
+  padding: 4vmin;
+}
+
+.clients {
+  align-items: center;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-}
-
-.hero {
-  @apply p-8 lg:p-12 grid-cols-1 lg:grid-cols-2;
-  align-items: center;
-  display: grid;
   gap: 4rem;
+  justify-content: center;
+  min-height: calc(50svh - 8vmin);
+  padding: 4vmin 0;
 }
 
-.hero > :last-child {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: max-content 1fr max-content;
-  grid-template-rows: repeat(4, 1fr);
-}
-
-.hero > :last-child > :first-child {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-.hero > :last-child > :nth-child(2) {
-  background-color: var(--color-foreground);
-  border-radius: 1.5rem 1.5rem 1.5rem 0;
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.hero > :last-child > :nth-child(3) {
-  background-color: var(--color-foreground);
-  border-radius: 1.5rem 1.5rem 0 1.5rem;
-  grid-column: 2;
-  grid-row: 2 / span 2;
-}
-
-.hero > :last-child > :last-child {
-  grid-column: 3;
-  grid-row: 3 / span 2;
-}
-
-.hero h1 {
+.clients h3 {
   font-family: var(--font-rowdies);
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.section:nth-child(2n) .hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-card-background),
+    hsl(from var(--color-card-background) h s l / 0.5)
+  );
+}
+
+.section:nth-child(2n) .imagePlaceholder {
+  background: linear-gradient(
+    135deg,
+    var(--color-input-background),
+    hsl(from var(--color-input-background) h s l / 0.5)
+  );
+}
+
+.section:nth-child(4) .hero {
+  @apply flex-col lg:flex-row;
+}
+
+.section:nth-child(2n + 1) .imagePlaceholder {
+  background: linear-gradient(
+    135deg,
+    var(--color-card-background),
+    hsl(from var(--color-card-background) h s l / 0.5)
+  );
+}
+
+.hero h1,
+.hero h3 {
+  font-family: var(--font-rowdies);
+  font-size: calc(1.5rem + 1.5vmin);
+  line-height: 1.2;
 }
 
 .hero p {
-  margin-top: 0.5rem;
+  font-size: calc(0.8rem + 0.8vmin);
+  margin-top: 2vmin;
 }
 
-.hero .avatar {
-  @apply size-24 sm:size-32 lg:size-24 xl:size-32;
+.imagePlaceholder {
+  border-radius: 1rem;
+  flex-basis: 50%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+  gap: 4vmin;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.content {
   align-items: start;
   display: grid;
-  gap: 2rem;
+  gap: 4vmin;
   grid-template-columns: 1fr 1fr;
   max-width: 1280px;
-  padding: 0 2rem;
+  padding: 0 4vmin;
 }

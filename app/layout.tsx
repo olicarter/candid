@@ -1,8 +1,9 @@
 import { ReactNode } from 'react'
 import { inter, rowdies } from '@/utils/fonts'
 import { cn } from '@/lib/utils'
-import '@/app/globals.css'
 import { getProfile } from '@/lib/auth'
+import '@/app/globals.css'
+import styles from './layout.module.css'
 
 export const metadata = {
   metadataBase: new URL(`${process.env.APP_URL}`),
@@ -20,9 +21,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
       data-theme={profile?.theme ?? 'emerald'}
     >
       <body className="flex flex-col items-center">
-        <div className="flex flex-col items-center min-h-screen py-4 sm:py-8 gap-4 sm:gap-8 w-full *:w-full overflow-x-hidden">
-          {props.children}
-        </div>
+        <div className={styles.main}>{props.children}</div>
       </body>
     </html>
   )

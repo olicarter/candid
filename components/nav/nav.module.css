@@ -61,5 +61,5 @@
 }
 
 .avatar {
-  outline-color: theme('colors.orange.100');
+  outline-color: var(--color-card-background);
 }

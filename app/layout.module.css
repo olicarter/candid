@@ -1,0 +1,9 @@
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  overflow-x: hidden;
+  padding: 4vmin 0;
+  width: 100%;
+}
