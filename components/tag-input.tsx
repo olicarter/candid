@@ -58,11 +58,9 @@ export function TagInput({
       className={cn(
         'bg-orange-100 cursor-text flex flex-wrap relative ring-orange-950 has-[input:focus]:ring-2',
         rokkitt.className,
-        {
-          'gap-1.5 p-1.5 rounded-[0.5rem]': size === 'sm',
-          'gap-2 p-2 rounded-[10px]': size === 'md',
-          ' gap-3 p-3 rounded-[0.75rem]': size === 'lg',
-        },
+        size === 'sm' && 'gap-1.5 p-1.5 rounded-[0.5rem]',
+        size === 'md' && 'gap-2 p-2 rounded-[10px]',
+        size === 'lg' && 'gap-3 p-3 rounded-[0.75rem]',
       )}
       onClick={() => inputRef.current?.focus()}
     >
@@ -70,10 +68,8 @@ export function TagInput({
         <button
           className={cn(
             'bg-orange-300 cursor-pointer flex gap-1 group items-center rounded-md',
-            {
-              'h-5 pl-1.5 pr-0.5 text-lg': size === 'sm',
-              'h-6 pl-1.5 pr-1 text-xl': ['md', 'lg'].includes(size),
-            },
+            size === 'sm' && 'h-5 pl-1.5 pr-0.5 text-lg',
+            ['md', 'lg'].includes(size) && 'h-6 pl-1.5 pr-1 text-xl',
           )}
           key={tag}
           onClick={() => deleteTag(tag)}
@@ -88,10 +84,8 @@ export function TagInput({
         {...props}
         className={cn(
           'bg-transparent grow leading-none min-w-32 w-0 outline-none peer',
-          {
-            'h-5 text-lg': size === 'sm',
-            'h-6 text-xl': ['md', 'lg'].includes(size),
-          },
+          size === 'sm' && 'h-5 text-lg',
+          ['md', 'lg'].includes(size) && 'h-6 text-xl',
         )}
         onChange={e => setValue(e.target.value)}
         onKeyDown={e => {
