@@ -2,8 +2,10 @@
   background-color: var(--color-input-background);
   border-radius: 0.5rem;
   height: 2.5rem;
+  min-width: 0;
   padding: 0 0.75rem;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
 .input:focus-visible {
