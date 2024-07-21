@@ -5,16 +5,16 @@ import { type PaymentMethod } from '@stripe/stripe-js'
 import { SiMastercard, SiVisa } from '@icons-pack/react-simple-icons'
 import styles from './billing-details-card.module.css'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogOverlay,
-  DialogPortal,
-  DialogTrigger,
-} from '@/components/dialog'
-import { PaymentMethodCard } from '@/components/cards/payment-method-card'
-import { UpdateAddressCard } from '@/components/cards/update-address-card'
+// import { Button } from '@/components/button'
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogOverlay,
+//   DialogPortal,
+//   DialogTrigger,
+// } from '@/components/dialog'
+// import { PaymentMethodCard } from '@/components/cards/payment-method-card'
+// import { UpdateAddressCard } from '@/components/cards/update-address-card'
 import { getCustomer } from '@/lib/stripe'
 
 export async function BillingDetailsCard(props: {
@@ -67,26 +67,26 @@ export async function BillingDetailsCard(props: {
                 </>
               )}
             </div>
-            <Dialog>
+            {/* <Dialog>
               <DialogTrigger asChild>
                 <Button>Add card</Button>
               </DialogTrigger>
               <DialogContent>
                 <PaymentMethodCard />
               </DialogContent>
-            </Dialog>
+            </Dialog> */}
           </div>
           <Form.Label>Billing Address</Form.Label>
           <div className={styles.field}>
             <Input className="grow" readOnly type="text" value={addressValue} />
-            <Dialog>
+            {/* <Dialog>
               <DialogTrigger asChild>
                 <Button>Update</Button>
               </DialogTrigger>
               <DialogContent>
                 <UpdateAddressCard address={customer.address} />
               </DialogContent>
-            </Dialog>
+            </Dialog> */}
           </div>
         </Form.Root>
       </Card.Content>

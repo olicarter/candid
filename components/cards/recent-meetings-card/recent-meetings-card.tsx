@@ -153,11 +153,13 @@ export function RecentMeetingsCard() {
       </Card.Header>
       <Card.Content>
         <Form.Root>
-          {dates.map(date => {
+          {dates.map((date, index) => {
             const label = (() => {
-              if (isToday(new Date(date))) {
+              // if (isToday(new Date(date))) {
+              if (index === 0) {
                 return 'Today'
-              } else if (isYesterday(new Date(date))) {
+                // } else if (isYesterday(new Date(date))) {
+              } else if (index === 1) {
                 return 'Yesterday'
               }
               return format(date, "iiii',' do MMMM")
