@@ -2,13 +2,11 @@
 
 import { useRef } from 'react'
 import * as Card from '@/components/card'
-import * as Form from '@/components/form'
 import { type Enums } from '@/types/supabase'
 import { updateProfileTheme } from '@/actions/updateProfileTheme'
 import styles from './theme-selection-card.module.css'
 
 const themes = ['emerald', 'orange', 'pro']
-const variations = ['light', 'dark', 'system']
 
 export default function ThemeSelectionCard(props: { theme: Enums<'theme'> }) {
   const formRef = useRef<HTMLFormElement>(null)
@@ -20,7 +18,7 @@ export default function ThemeSelectionCard(props: { theme: Enums<'theme'> }) {
         <Card.Description>Lorem ipsum foo bar.</Card.Description>
       </Card.Header>
       <Card.Content>
-        <Form.Root
+        <form
           action={async (formData: FormData) => {
             const theme = formData.get('theme') as string
             document.documentElement.setAttribute('data-theme', theme)
@@ -68,7 +66,7 @@ export default function ThemeSelectionCard(props: { theme: Enums<'theme'> }) {
               </div>
             ))}
           </div> */}
-        </Form.Root>
+        </form>
       </Card.Content>
     </Card.Root>
   )
