@@ -1,0 +1,133 @@
+.form {
+  grid-template-columns: 1fr;
+}
+
+.themeButtons,
+.lightnessButtons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.themeButtons input,
+.lightnessButtons input {
+  cursor: pointer;
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.themeButtons > *,
+.lightnessButtons > * {
+  border-radius: 0.5rem;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: relative;
+}
+
+.themeButtons > *:has(input:checked),
+.lightnessButtons > *:has(input:checked) {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: -2px;
+}
+
+.themeButtons > *:has(input:focus-visible),
+.lightnessButtons > *:has(input:focus-visible) {
+  outline: 2px solid var(--color-foreground);
+}
+
+.label {
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.palette {
+  border-radius: 0.375rem;
+  display: flex;
+  gap: 0.375rem;
+  padding: 0.375rem;
+}
+
+.palette li {
+  border-radius: 0.25rem;
+  flex-basis: 100%;
+  height: 1rem;
+}
+
+.themeButtons > *.emerald {
+  background-color: var(--color-background-theme-emerald);
+  color: var(--color-foreground-theme-emerald);
+}
+
+.themeButtons > *.orange {
+  background-color: var(--color-background-theme-orange);
+  color: var(--color-foreground-theme-orange);
+}
+
+.themeButtons > *.pro {
+  background-color: var(--color-background-theme-pro);
+  color: var(--color-foreground-theme-pro);
+}
+
+.themeButtons > *.emerald .palette {
+  background-color: var(--color-card-background-theme-emerald);
+}
+
+.themeButtons > *.orange .palette {
+  background-color: var(--color-card-background-theme-orange);
+}
+
+.themeButtons > *.pro .palette {
+  background-color: var(--color-card-background-theme-pro);
+}
+
+.themeButtons > *.emerald .palette > :nth-child(1) {
+  background-color: var(--color-input-background-theme-emerald);
+}
+
+.themeButtons > *.orange .palette > :nth-child(1) {
+  background-color: var(--color-input-background-theme-orange);
+}
+
+.themeButtons > *.pro .palette > :nth-child(1) {
+  background-color: var(--color-input-background-theme-pro);
+}
+
+.themeButtons > *.emerald .palette > :nth-child(2) {
+  background-color: var(--color-accent-background-theme-emerald);
+}
+
+.themeButtons > *.orange .palette > :nth-child(2) {
+  background-color: var(--color-accent-background-theme-orange);
+}
+
+.themeButtons > *.pro .palette > :nth-child(2) {
+  background-color: var(--color-accent-background-theme-pro);
+}
+
+.themeButtons > *.emerald .palette > :nth-child(3) {
+  background-color: var(--color-danger-background-theme-emerald);
+}
+
+.themeButtons > *.orange .palette > :nth-child(3) {
+  background-color: var(--color-danger-background-theme-orange);
+}
+
+.themeButtons > *.pro .palette > :nth-child(3) {
+  background-color: var(--color-danger-background-theme-pro);
+}
+
+.themeButtons > *.emerald .palette > :nth-child(4) {
+  background-color: var(--color-success-background-theme-emerald);
+}
+
+.themeButtons > *.orange .palette > :nth-child(4) {
+  background-color: var(--color-success-background-theme-orange);
+}
+
+.themeButtons > *.pro .palette > :nth-child(4) {
+  background-color: var(--color-success-background-theme-pro);
+}

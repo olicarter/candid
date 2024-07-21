@@ -8,7 +8,7 @@ import { BillingDetailsCard } from '@/components/cards/billing-details-card'
 import { IntegrationsCard } from '@/components/cards/integrations-card'
 import { OrganizationDetailsCard } from '@/components/cards/organization-details-card'
 import { PersonalDetailsCard } from '@/components/cards/personal-details-card'
-import { ThemeSelectionCard } from '@/components/cards/theme-selection-card'
+import ThemeSelectionCard from '@/components/cards/theme-selection-card'
 import styles from './page.module.css'
 
 export default async function TeamPage() {

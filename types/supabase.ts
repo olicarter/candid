@@ -345,7 +345,7 @@ export type Database = {
     Enums: {
       permission: "organizations_members.insert"
       role: "admin" | "participant"
-      theme: "orange" | "emerald"
+      theme: "orange" | "emerald" | "pro"
     }
     CompositeTypes: {
       [_ in never]: never
