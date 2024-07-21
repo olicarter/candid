@@ -25,17 +25,26 @@ export async function createOrganization(formData: FormData) {
     throw createOrganizationError;
   }
 
-  const { error: createOrganizationMemberError } = await supabase.from(
-    "organizations_members",
-  ).insert({
+  const { error: updateProfileError } = await supabase.from("profiles").update({
     organization: organization.id,
-    profile: user.id,
-  });
+  }).eq("id", user.id);
 
-  if (createOrganizationMemberError) {
-    console.error("Create organization member error");
-    throw createOrganizationMemberError;
+  if (updateProfileError) {
+    console.error("Update profile error");
+    throw updateProfileError;
   }
+
+  // const { error: createOrganizationMemberError } = await supabase.from(
+  //   "organizations_members",
+  // ).insert({
+  //   organization: organization.id,
+  //   profile: user.id,
+  // });
+
+  // if (createOrganizationMemberError) {
+  //   console.error("Create organization member error");
+  //   throw createOrganizationMemberError;
+  // }
 
   const stripe = getStripe();
 

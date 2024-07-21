@@ -49,62 +49,50 @@ export async function getUserRole() {
 }
 
 export async function getOrganization() {
+  const profile = await getProfile();
+
+  if (!profile?.organization) return null;
+
   const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) return null;
-
-  const { data: organizations, error: getOrganizationsError } = await supabase
+  const { data: organization, error } = await supabase
     .from("organizations")
-    .select(
-      "*, members:organizations_members!inner(profile)",
-    )
-    .eq("members.profile", user.id)
-    .limit(1);
-
-  if (getOrganizationsError) {
-    console.error("getOrganization error");
-    throw getOrganizationsError;
-  }
-
-  return organizations[0];
-}
-
-export async function getOrganizationMembers() {
-  const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) return null;
-
-  const { data: profile, error: getProfileError } = await supabase
-    .from("profiles")
-    .select(
-      "*, members:organizations_members!organizations_members_profile_fkey(*, organization(*, members:organizations_members(profile(*,profiles_roles(role)))))",
-    )
-    .eq("id", user.id)
+    .select()
+    .eq("id", profile.organization)
     .single();
 
-  if (getProfileError) {
-    console.error("getOrganizationMembers error");
-    throw getProfileError;
+  if (error) {
+    console.error("getOrganization error");
+    throw error;
   }
 
-  // Improve typing
-  type Organization = {
-    members: {
-      profile: {
-        profiles_roles: {
-          role: "admin" | "participant";
-        }[];
-      }[];
-    }[];
-  };
+  return organization;
+}
 
-  return (profile.members[0].organization as unknown as Organization).members;
+export async function getOrganizationMembers(
+  options?: { includeSelf: boolean },
+) {
+  const profile = await getProfile();
+
+  if (!profile?.organization) return null;
+
+  const supabase = createClient();
+
+  const query = supabase.from("profiles").select().eq(
+    "organization",
+    profile.organization,
+  );
+
+  if (!options?.includeSelf) {
+    query.neq("id", profile.id);
+  }
+
+  const { data: profiles, error } = await query;
+
+  if (error) {
+    console.error("getOrganizationMembers error");
+    throw error;
+  }
+
+  return profiles;
 }

@@ -157,6 +157,7 @@ export type Database = {
           id: string
           job_title: string | null
           onboarding_step: number | null
+          organization: string | null
           theme: Database["public"]["Enums"]["theme"]
           updated_at: string | null
         }
@@ -168,6 +169,7 @@ export type Database = {
           id: string
           job_title?: string | null
           onboarding_step?: number | null
+          organization?: string | null
           theme?: Database["public"]["Enums"]["theme"]
           updated_at?: string | null
         }
@@ -179,6 +181,7 @@ export type Database = {
           id?: string
           job_title?: string | null
           onboarding_step?: number | null
+          organization?: string | null
           theme?: Database["public"]["Enums"]["theme"]
           updated_at?: string | null
         }
@@ -188,6 +191,13 @@ export type Database = {
             columns: ["id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_organization_fkey"
+            columns: ["organization"]
+            isOneToOne: false
+            referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
         ]

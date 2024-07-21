@@ -1,4 +1,4 @@
-import { getUser } from '@/lib/auth'
+import { getOrganizationMembers, getUser } from '@/lib/auth'
 import { RecentInteractionsCard } from '@/components/cards/recent-interactions-card'
 import { RecentMeetingsCard } from '@/components/cards/recent-meetings-card'
 import { SentimentCard } from '@/components/cards/sentiment-card'
@@ -11,6 +11,8 @@ export default async function IndexPage() {
 
   if (!user) return null
 
+  const organizationMembers = await getOrganizationMembers()
+
   return (
     <>
       <div className={styles.column}>
@@ -19,7 +21,9 @@ export default async function IndexPage() {
         <SentimentCard />
       </div>
       <div className={styles.column}>
-        <RecentInteractionsCard />
+        {!!organizationMembers?.length && (
+          <RecentInteractionsCard profiles={organizationMembers} />
+        )}
         <RecentMeetingsCard />
       </div>
     </>
