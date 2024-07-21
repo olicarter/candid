@@ -39,58 +39,57 @@ export default async function RootLayout(props: { children: ReactNode }) {
     if (!stripeCustomer) redirect('/onboarding')
   }
 
-  return (
-    <>
-      {user ? (
+  if (user) {
+    return (
+      <>
         <section className={styles.section}>
           <Nav />
         </section>
-      ) : (
-        <div className="grow flex flex-col justify-between h-[calc(100svh-4rem-16vmin)] w-full">
-          <section className={styles.hero}>
-            <div className="flex flex-col gap-[4vmin]">
-              <h1>Candid</h1>
-              <p>AI-powered feedback for better teams</p>
-              <form
-                action={signInWithGoogle}
-                className="flex justify-center mt-[4vmin]"
-              >
-                <SubmitButton
-                  formAction={signInWithGoogle}
-                  pendingText="Signing in..."
-                  size="lg"
-                >
-                  Sign in with Google
-                </SubmitButton>
-              </form>
-            </div>
-            <Marquee autoFill speed={40} gradient gradientColor="#022c22">
-              {[
-                SiAmazon,
-                SiApple,
-                SiEbay,
-                SiEtsy,
-                SiFacebook,
-                SiGoogle,
-                SiLinkedin,
-                SiMastercard,
-                SiMicrosoft,
-                SiNetflix,
-                SiPaypal,
-                SiSpotify,
-                SiTwitter,
-                SiVisa,
-              ].map((Comp, i) => (
-                <Comp
-                  className="mr-[12vmin] size-[calc(2vmin+1.5rem)]"
-                  key={i}
-                />
-              ))}
-            </Marquee>
-          </section>
+        <main className={styles.content}>{props.children}</main>
+      </>
+    )
+  }
+
+  return (
+    <div className="grow flex flex-col justify-between h-[calc(100svh-4rem-16vmin)] w-full">
+      <section className={styles.hero}>
+        <div className="flex flex-col gap-[4vmin]">
+          <h1>Candid</h1>
+          <p>AI-powered feedback for better teams</p>
+          <form
+            action={signInWithGoogle}
+            className="flex justify-center mt-[4vmin]"
+          >
+            <SubmitButton
+              formAction={signInWithGoogle}
+              pendingText="Signing in..."
+              size="lg"
+            >
+              Sign in with Google
+            </SubmitButton>
+          </form>
         </div>
-      )}
-      <main className={styles.content}>{props.children}</main>
-    </>
+        <Marquee autoFill speed={40} gradient gradientColor="#022c22">
+          {[
+            SiAmazon,
+            SiApple,
+            SiEbay,
+            SiEtsy,
+            SiFacebook,
+            SiGoogle,
+            SiLinkedin,
+            SiMastercard,
+            SiMicrosoft,
+            SiNetflix,
+            SiPaypal,
+            SiSpotify,
+            SiTwitter,
+            SiVisa,
+          ].map((Comp, i) => (
+            <Comp className="mr-[12vmin] size-[calc(2vmin+1.5rem)]" key={i} />
+          ))}
+        </Marquee>
+      </section>
+    </div>
   )
 }

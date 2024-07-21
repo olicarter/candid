@@ -58,7 +58,10 @@ export function PersonalDetailsCard(props: PersonalDetailsCardProps) {
           <UserIdentitiesInput userIdentities={props.userIdentities} />
           {hasFormChanged && (
             <Form.Footer>
-              <SubmitButton pendingText="Saving changes...">
+              <SubmitButton
+                formAction={updateProfile}
+                pendingText="Saving changes..."
+              >
                 Save changes
               </SubmitButton>
               <Button onClick={resetForm} type="button" variant="light">

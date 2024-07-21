@@ -5,15 +5,16 @@ import styles from './avatar.module.css'
 
 export interface AvatarProps {
   className?: string
-  src: string
+  src: string | null
 }
 
 export function Avatar(props: AvatarProps) {
   const supabase = createClient()
 
-  let src = props.src
+  let src = props.src ?? ''
 
   if (
+    props.src !== null &&
     !props.src.startsWith('http') &&
     !props.src.startsWith('blob') &&
     !props.src.startsWith('/')
