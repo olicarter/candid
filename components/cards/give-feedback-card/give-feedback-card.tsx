@@ -9,10 +9,12 @@ import { Textarea } from '@/components/textarea'
 import { DialogClose } from '@/components/dialog'
 import styles from './give-feedback-card.module.css'
 import { SubmitButton } from '@/components/submit-button'
+import { createFeedback } from '@/actions/createFeedback'
+import { Tables } from '@/types/supabase'
 
 export function GiveFeedbackCard(props: {
   onRecipientChangeClick?: IconButtonProps['onClick']
-  recipient: { firstName: string; jobTitle: string; avatarUrl: string }
+  recipient: Pick<Tables<'profiles'>, 'id' | 'avatar_url' | 'full_name'>
 }) {
   return (
     <Card.Root>
@@ -29,13 +31,14 @@ export function GiveFeedbackCard(props: {
         </DialogDescription>
       </Card.Header>
       <Card.Content>
-        <Form.Root>
+        <Form.Root action={createFeedback}>
+          <input type="hidden" name="recipient" value={props.recipient.id} />
           <Form.Label>Recipient</Form.Label>
           <ProfileCard.Root>
-            <ProfileCard.Avatar src={props.recipient.avatarUrl} />
-            <ProfileCard.Title>{props.recipient.firstName}</ProfileCard.Title>
+            <ProfileCard.Avatar src={props.recipient.avatar_url} />
+            <ProfileCard.Title>{props.recipient.full_name}</ProfileCard.Title>
             <ProfileCard.Description>
-              {props.recipient.firstName}
+              {props.recipient.full_name}
             </ProfileCard.Description>
             <ProfileCard.Button asChild>
               <IconButton
@@ -45,7 +48,7 @@ export function GiveFeedbackCard(props: {
             </ProfileCard.Button>
           </ProfileCard.Root>
           <Form.Label>Feedback</Form.Label>
-          <Textarea required rows={6} />
+          <Textarea name="content" required rows={6} />
           <Form.Label>Sentiment</Form.Label>
           <div className={styles.sentimentButtons}>
             <Button disabled variant="red">
@@ -62,7 +65,12 @@ export function GiveFeedbackCard(props: {
             <DialogClose asChild>
               <Button variant="light">Cancel</Button>
             </DialogClose>
-            <SubmitButton>Submit feedback</SubmitButton>
+            <SubmitButton
+              formAction={createFeedback}
+              pendingText="Submitting feedback"
+            >
+              Submit feedback
+            </SubmitButton>
           </Form.Footer>
         </Form.Root>
       </Card.Content>
