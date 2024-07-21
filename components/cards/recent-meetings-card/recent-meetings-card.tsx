@@ -12,18 +12,17 @@ import { SelectMeetingAttendeeCard } from '@/components/cards/select-meeting-att
 import { Fragment } from 'react'
 import { format, isToday, isYesterday } from 'date-fns'
 import styles from './recent-meetings-card.module.css'
+import { Tables } from '@/types/supabase'
 
 interface Meeting {
   id: string
   name: string
   startDate: string
   endDate: string
-  attendees: {
-    id: string
-    firstName: string
-    avatarUrl: string
-    jobTitle: string
-  }[]
+  attendees: Pick<
+    Tables<'profiles'>,
+    'id' | 'avatar_url' | 'full_name' | 'job_title'
+  >[]
 }
 
 const data: Meeting[] = [
@@ -35,33 +34,33 @@ const data: Meeting[] = [
     attendees: [
       {
         id: 'c4553796-0547-5f69-90ba-06ea2424297e',
-        firstName: 'Davis',
-        jobTitle: 'Front-End Engineer',
-        avatarUrl: '/davis.jpg',
+        full_name: 'Davis',
+        job_title: 'Front-End Engineer',
+        avatar_url: '/davis.jpg',
       },
       {
         id: '4a4d0fb8-c12b-587f-b7dd-4d5f00690936',
-        firstName: 'Kaylynn',
-        jobTitle: 'Full-Stack Engineer',
-        avatarUrl: '/kaylynn.jpg',
+        full_name: 'Kaylynn',
+        job_title: 'Full-Stack Engineer',
+        avatar_url: '/kaylynn.jpg',
       },
       {
         id: 'a291a7d2-ac84-5f7a-88b0-d695aff4dc50',
-        firstName: 'Jaydon',
-        jobTitle: 'UI/UX Designer',
-        avatarUrl: '/jaydon.jpg',
+        full_name: 'Jaydon',
+        job_title: 'UI/UX Designer',
+        avatar_url: '/jaydon.jpg',
       },
       {
         id: '6b58d8f8-01fd-510f-b00b-24303649868d',
-        firstName: 'Ann',
-        jobTitle: 'Engineering Manager',
-        avatarUrl: '/ann.jpg',
+        full_name: 'Ann',
+        job_title: 'Engineering Manager',
+        avatar_url: '/ann.jpg',
       },
       {
         id: '2eacbc79-2cd8-52ab-90f6-47abf123ff18',
-        firstName: 'Justin',
-        jobTitle: 'CTO',
-        avatarUrl: '/justin.jpg',
+        full_name: 'Justin',
+        job_title: 'CTO',
+        avatar_url: '/justin.jpg',
       },
     ],
   },
@@ -73,27 +72,27 @@ const data: Meeting[] = [
     attendees: [
       {
         id: 'c4553796-0547-5f69-90ba-06ea2424297e',
-        firstName: 'Davis',
-        jobTitle: 'Front-End Engineer',
-        avatarUrl: '/davis.jpg',
+        full_name: 'Davis',
+        job_title: 'Front-End Engineer',
+        avatar_url: '/davis.jpg',
       },
       {
         id: '4a4d0fb8-c12b-587f-b7dd-4d5f00690936',
-        firstName: 'Kaylynn',
-        jobTitle: 'Full-Stack Engineer',
-        avatarUrl: '/kaylynn.jpg',
+        full_name: 'Kaylynn',
+        job_title: 'Full-Stack Engineer',
+        avatar_url: '/kaylynn.jpg',
       },
       {
         id: 'a291a7d2-ac84-5f7a-88b0-d695aff4dc50',
-        firstName: 'Jaydon',
-        jobTitle: 'UI/UX Designer',
-        avatarUrl: '/jaydon.jpg',
+        full_name: 'Jaydon',
+        job_title: 'UI/UX Designer',
+        avatar_url: '/jaydon.jpg',
       },
       {
         id: '6b58d8f8-01fd-510f-b00b-24303649868d',
-        firstName: 'Ann',
-        jobTitle: 'Engineering Manager',
-        avatarUrl: '/ann.jpg',
+        full_name: 'Ann',
+        job_title: 'Engineering Manager',
+        avatar_url: '/ann.jpg',
       },
     ],
   },
@@ -105,27 +104,27 @@ const data: Meeting[] = [
     attendees: [
       {
         id: 'c4553796-0547-5f69-90ba-06ea2424297e',
-        firstName: 'Davis',
-        jobTitle: 'Front-End Engineer',
-        avatarUrl: '/davis.jpg',
+        full_name: 'Davis',
+        job_title: 'Front-End Engineer',
+        avatar_url: '/davis.jpg',
       },
       {
         id: '4a4d0fb8-c12b-587f-b7dd-4d5f00690936',
-        firstName: 'Kaylynn',
-        jobTitle: 'Full-Stack Engineer',
-        avatarUrl: '/kaylynn.jpg',
+        full_name: 'Kaylynn',
+        job_title: 'Full-Stack Engineer',
+        avatar_url: '/kaylynn.jpg',
       },
       {
         id: 'a291a7d2-ac84-5f7a-88b0-d695aff4dc50',
-        firstName: 'Jaydon',
-        jobTitle: 'UI/UX Designer',
-        avatarUrl: '/jaydon.jpg',
+        full_name: 'Jaydon',
+        job_title: 'UI/UX Designer',
+        avatar_url: '/jaydon.jpg',
       },
       {
         id: '6b58d8f8-01fd-510f-b00b-24303649868d',
-        firstName: 'Ann',
-        jobTitle: 'Engineering Manager',
-        avatarUrl: '/ann.jpg',
+        full_name: 'Ann',
+        job_title: 'Engineering Manager',
+        avatar_url: '/ann.jpg',
       },
     ],
   },
@@ -198,7 +197,7 @@ function RecentMeeting(props: { meeting: Meeting }) {
               <Avatar
                 className={styles.avatar}
                 key={attendee.id}
-                src={attendee.avatarUrl}
+                src={attendee.avatar_url}
               />
             ))}
           </ul>
