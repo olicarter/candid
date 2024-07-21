@@ -35,6 +35,7 @@ export function ThemeSelectionCard(props: { theme: Enums<'theme'> }) {
           >
             <option value="emerald">Emerald</option>
             <option value="orange">Orange</option>
+            <option value="pro">Pro</option>
           </Select>
         </Form.Root>
       </Card.Content>

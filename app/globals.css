@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root[data-theme='pro'] {
+  --color-background: hsl(0, 0%, 3.9%);
+  --color-foreground: hsl(0, 0%, 89.8%);
+  --color-accent-background: hsl(0, 0%, 89.8%);
+  --color-accent-foreground: hsl(0, 0%, 3.9%);
+  --color-danger-background: hsl(0, 72.2%, 50.6%);
+  --color-danger-foreground: hsl(355.7, 100%, 97.3%);
+  --color-success-background: hsl(142.1, 70.6%, 45.3%);
+  --color-card-background: hsl(0, 0%, 9%);
+  --color-input-background: hsl(0, 0%, 14.9%);
+}
+
 :root[data-theme='emerald'] {
   --color-background: hsl(166, 91%, 9%);
   --color-foreground: hsl(151.8, 81%, 95.9%);
