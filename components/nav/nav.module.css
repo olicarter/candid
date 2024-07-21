@@ -2,8 +2,10 @@
   align-items: center;
   background-color: var(--color-card-background);
   border-radius: 1rem;
-  display: flex;
+  container-type: inline-size;
+  display: grid;
   gap: calc(1vmin + 1rem);
+  grid-template-columns: min-content 1fr max-content;
   height: 4rem;
   justify-content: space-between;
   padding: 0 calc((4rem - 2.5rem) / 2) 0 1rem;
@@ -30,14 +32,21 @@
   align-items: center;
   display: flex;
   gap: 0.75rem;
+  width: 100%;
 }
 
-.profile div:first-child {
+.profileDetails {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
   overflow: hidden;
   text-align: right;
+}
+
+@container (width < 32rem) {
+  .profileDetails {
+    display: none;
+  }
 }
 
 .fullName {

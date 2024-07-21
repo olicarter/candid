@@ -1,5 +1,6 @@
 .section {
   padding: 0 4vmin;
+  max-width: 128rem;
   width: 100%;
 }
 
@@ -67,8 +68,9 @@
   display: grid;
   gap: 4vmin;
   grid-template-columns: 1fr;
-  max-width: 1280px;
+  max-width: 128rem;
   padding: 0 4vmin;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {

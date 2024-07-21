@@ -21,14 +21,14 @@
 }
 
 .bar {
-  background-color: theme('colors.primary.400');
+  background-color: var(--color-accent-background);
   border-radius: 0.25rem;
   height: 0.5rem;
   min-width: 4rem;
 }
 
 .bar.company {
-  background-color: theme('colors.primary.300');
+  background-color: hsl(from var(--color-accent-background) h s l / 0.5);
 }
 
 .valueLabel {

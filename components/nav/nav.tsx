@@ -19,17 +19,17 @@ export async function Nav(props: { className?: string }) {
         props.className,
       )}
     >
-      <div className="flex gap-[inherit]">
-        <span className={styles.logo}>C.</span>
+      <span className={styles.logo}>C.</span>
+      <nav>
         {profile && organization && (
-          <nav>
+          <>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/settings">Settings</NavLink>
-          </nav>
+          </>
         )}
-      </div>
+      </nav>
       <div className={styles.profile}>
-        <div>
+        <div className={styles.profileDetails}>
           {profile?.full_name && (
             <p className={styles.fullName}>{profile.full_name}</p>
           )}
