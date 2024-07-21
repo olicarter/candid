@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :root[data-theme='pro'] {
   --color-background: hsl(0, 0%, 3.9%);
   --color-foreground: hsl(0, 0%, 89.8%);
