@@ -10,18 +10,14 @@ import * as Form from '@/components/form'
 import { DialogDescription, DialogTitle } from '@/components/dialog'
 import { format } from 'date-fns'
 import styles from './select-meeting-attendee-card.module.css'
+import { Tables } from '@/types/supabase'
 
 export function SelectMeetingAttendeeCard(props: {
   meeting: {
     name: string
     startDate: string
     endDate: string
-    attendees: {
-      id: string
-      avatarUrl: string
-      firstName: string
-      jobTitle: string
-    }[]
+    attendees: Tables<'profiles'>[]
   }
 }) {
   const [recipientId, setRecipientId] = useState<string | null>(null)
@@ -69,10 +65,10 @@ export function SelectMeetingAttendeeCard(props: {
             {props.meeting.attendees.map(attendee => (
               <ProfileCard.Root asChild key={attendee.id}>
                 <button onClick={() => setRecipientId(attendee.id)}>
-                  <ProfileCard.Avatar src={attendee.avatarUrl} />
-                  <ProfileCard.Title>{attendee.firstName}</ProfileCard.Title>
+                  <ProfileCard.Avatar src={attendee.avatar_url} />
+                  <ProfileCard.Title>{attendee.full_name}</ProfileCard.Title>
                   <ProfileCard.Description>
-                    {attendee.jobTitle}
+                    {attendee.job_title}
                   </ProfileCard.Description>
                 </button>
               </ProfileCard.Root>
