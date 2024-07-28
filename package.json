@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001 --experimental-https",
     "build": "next build",
     "start": "next start",
     "gen:types": "supabase gen types typescript --linked > types/supabase.ts"

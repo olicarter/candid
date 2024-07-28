@@ -4,13 +4,7 @@ import { cn } from '@/lib/utils'
 import * as Card from '@/components/card'
 import * as Form from '@/components/form'
 import { Button } from '@/components/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogOverlay,
-  DialogPortal,
-  DialogTrigger,
-} from '@/components/dialog'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/dialog'
 import { Input } from '@/components/input'
 import { PaymentMethodCard } from '@/components/cards/payment-method-card'
 import { UpdateAddressCard } from '@/components/cards/update-address-card'

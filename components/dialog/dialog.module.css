@@ -53,7 +53,7 @@
 .overlay {
   align-items: center;
   backdrop-filter: blur(0.5rem);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   inset: 0;
   justify-content: center;
