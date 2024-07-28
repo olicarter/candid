@@ -48,7 +48,7 @@ export function GiveFeedbackCard(props: {
             </ProfileCard.Button>
           </ProfileCard.Root>
           <Form.Label>Feedback</Form.Label>
-          <Textarea name="content" required rows={6} />
+          <Textarea autoFocus name="content" required rows={6} />
           <Form.Label>Sentiment</Form.Label>
           <div className={styles.sentimentButtons}>
             <Button disabled variant="red">

@@ -8,11 +8,14 @@ import {
   DialogPortal,
   DialogTrigger,
 } from '@/components/dialog'
-import { SelectMeetingAttendeeCard } from '@/components/cards/select-meeting-attendee-card'
 import { Fragment } from 'react'
 import { format, isToday, isYesterday } from 'date-fns'
 import styles from './recent-meetings-card.module.css'
-import { Tables } from '@/types/supabase'
+import { type Tables } from '@/types/supabase'
+import * as ProfileCard from '@/components/profile-card'
+import { Button } from '@/components/button'
+import { ArrowRight } from 'lucide-react'
+import { GiveFeedbackCard } from '../give-feedback-card'
 
 interface Meeting {
   id: string
@@ -182,30 +185,49 @@ export function RecentMeetingsCard() {
 
 function RecentMeeting(props: { meeting: Meeting }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className={styles.recentMeeting}>
-          <div>
-            <p className={styles.name}>{props.meeting.name}</p>
-            <p className={styles.time}>
-              {format(props.meeting.startDate, 'h:mm')} -{' '}
-              {format(props.meeting.endDate, 'h:mm a')}
-            </p>
-          </div>
-          <ul className={styles.attendeeList}>
-            {props.meeting.attendees.map(attendee => (
-              <Avatar
-                className={styles.avatar}
-                key={attendee.id}
-                src={attendee.avatar_url}
-              />
-            ))}
-          </ul>
-        </button>
-      </DialogTrigger>
-      <DialogContent>
-        <SelectMeetingAttendeeCard meeting={props.meeting} />
-      </DialogContent>
-    </Dialog>
+    <details className={styles.recentMeeting}>
+      <summary>
+        <div>
+          <p className={styles.name}>{props.meeting.name}</p>
+          <p className={styles.time}>
+            {format(props.meeting.startDate, 'h:mm')} -{' '}
+            {format(props.meeting.endDate, 'h:mm a')}
+          </p>
+        </div>
+        <ul className={styles.avatars}>
+          {props.meeting.attendees.map(attendee => (
+            <Avatar
+              className={styles.avatar}
+              key={attendee.id}
+              src={attendee.avatar_url}
+            />
+          ))}
+        </ul>
+      </summary>
+      <ul className={styles.attendeesList}>
+        {props.meeting.attendees.map(attendee => (
+          <Dialog key={attendee.id}>
+            <li>
+              <DialogTrigger asChild>
+                <button
+                // onClick={() => setRecipientId(attendee.id)}
+                >
+                  <Avatar className={styles.avatar} src={attendee.avatar_url} />
+                  <h5 className={styles.attendeeName}>{attendee.full_name}</h5>
+                  <p>{attendee.job_title}</p>
+                  <ArrowRight className={styles.icon} />
+                </button>
+              </DialogTrigger>
+              <DialogContent>
+                <GiveFeedbackCard
+                  // onRecipientChangeClick={() => setRecipientId(null)}
+                  recipient={attendee}
+                />
+              </DialogContent>
+            </li>
+          </Dialog>
+        ))}
+      </ul>
+    </details>
   )
 }
