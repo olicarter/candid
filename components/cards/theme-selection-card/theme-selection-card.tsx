@@ -6,7 +6,7 @@ import { type Enums } from '@/types/supabase'
 import { updateProfileTheme } from '@/actions/updateProfileTheme'
 import styles from './theme-selection-card.module.css'
 
-const themes = ['emerald', 'orange', 'pro']
+const themes = ['emerald', 'pro']
 
 export default function ThemeSelectionCard(props: { theme: Enums<'theme'> }) {
   const formRef = useRef<HTMLFormElement>(null)
