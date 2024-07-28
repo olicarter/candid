@@ -5,23 +5,6 @@ import { getCustomer } from '@/lib/stripe'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import styles from './layout.module.css'
-import Marquee from '@/components/marquee'
-import {
-  SiAmazon,
-  SiApple,
-  SiEbay,
-  SiEtsy,
-  SiFacebook,
-  SiGoogle,
-  SiLinkedin,
-  SiMastercard,
-  SiMicrosoft,
-  SiNetflix,
-  SiPaypal,
-  SiSpotify,
-  SiTwitter,
-  SiVisa,
-} from '@icons-pack/react-simple-icons'
 import { SubmitButton } from '@/components/submit-button'
 import { signInWithGoogle } from '@/actions/signInWithGoogle'
 
@@ -69,26 +52,6 @@ export default async function RootLayout(props: { children: ReactNode }) {
             </SubmitButton>
           </form>
         </div>
-        <Marquee autoFill speed={40} gradient gradientColor="#022c22">
-          {[
-            SiAmazon,
-            SiApple,
-            SiEbay,
-            SiEtsy,
-            SiFacebook,
-            SiGoogle,
-            SiLinkedin,
-            SiMastercard,
-            SiMicrosoft,
-            SiNetflix,
-            SiPaypal,
-            SiSpotify,
-            SiTwitter,
-            SiVisa,
-          ].map((Comp, i) => (
-            <Comp className="mr-[12vmin] size-[calc(2vmin+1.5rem)]" key={i} />
-          ))}
-        </Marquee>
       </section>
     </div>
   )
